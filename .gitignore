@@ -1,0 +1,23 @@
+# .gitignore
+
+# files starting with . or ~
+.*
+~*
+
+# logs and databases
+*.log
+*.sqlite
+*.sql
+
+# packages
+*.gz
+*.jar
+*.tar
+*.zip
+
+# tracking
+!.gitignore
+!.editorconfig
+!README.md
+!CHANGELOG.md
+!composer.json
