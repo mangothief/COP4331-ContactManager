@@ -1,19 +1,33 @@
-Meeting Time(s): Saturdays @ 10:00-11:30?AM EST
-First meeting: 2020-08-29 conducted over Discord
+Meeting Time(s): Saturdays @ 10:00-11:00AM EST
+Check-in meetings: Wednesday @ 2:00PM EST  
+First meeting: 2020-08-28 conducted over Discord @1:00PM
 
-Members:
-===========
-Min Park
-Alexander Anthony Longo
-Neo Aurelio Camanga
-Joseph Giordano
-Liam Chang Tsoi
+Members/Roles:
+===============
+Min Park - Front end
+Alexander "Alex" Anthony Longo - Front end
+Neo Aurelio Camanga - Project Manager
+Joseph "Joey" Giordano - API
+Liam Chang Tsoi - Database
 
 Experience:
-===========
-
-Roles:
-===========
+===============
+-Alex has experience writing native
+applications using React. 
+-Minimal experience in web development 
+between the other members.  
 
 Policy:
-===========
+===============
+-Project manager sets weekly 
+deadlines according to roadmap. 
+-Document changes to the code base. 
+-Separate channels in discord for 
+project components and roles. 
+
+Meeting Details:
+================
+-Discussed roles and policy.
+-Alex configured DigitalOcean server.
+-Came up with concept for website: "CookieBook"
+-Created an ERD for our database. 
