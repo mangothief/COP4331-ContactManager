@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<title>Cookie Book</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<script type="text/javascript" src="js/md5.js"></script>
+			<script type="text/javascript" src="js/code.js"></script>
+			<link href="css/styles.css" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap" rel="stylesheet">
+	</head>
+	<body>
+			<div class="background">
+				<div id="header">
+					<h1 id="title">Cookie Book</h1>
+				</div>
+
+				<div class="foreground">
+					<div id="monster">
+						<img src="images/cookieMonster.png" height="600px" width="1000px">
+					</div>
+					<div id="cookie">
+						<img class="rotate" src="images/bigCookie.png" height="600px" width="1000px">
+					</div>
+				</div>
+
+				<div class="forground" id="loginDiv">
+					<span id="inner-title">Sign In</span>
+					<label for="loginName"><b>Username</b></label><br />
+					<input type="text" id="loginName" placeholder="Enter Username" required /><br />
+					<label for="loginPassword"><b>Password</b></label><br />
+					<input type="password" id="loginPassword" placeholder="Enter Password" required /><br />
+					<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
+					<span id="loginResult"></span>
+				</div>
+			</div>
+<!--
+			<div class="background">
+				<form action="/action_page.php" class="container">
+				<h1>Login</h1>
+
+				<label for="email"><b>Email</b></label>
+				<input type="text" placeholder="Enter Email" name="email" required>
+
+				<label for="psw"><b>Password</b></label>
+				<input type="password" placeholder="Enter Password" name="psw" required>
+
+				<button type="submit" class="btn">Login</button>
+				</form>
+			</div>
+-->
+	</body>
+</html>
