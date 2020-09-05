@@ -1,63 +1,58 @@
-var urlBase = 'http://cookiebook.io/LAMPAPI';
+var url = 'http://cookiebook.team/LAMPAPI';
 var extension = 'php';
 
-var userId = 0;
+var userID = 0;
 var firstName = "";
 var lastName = "";
 
 function doLogin()
 {
-	userId = 0;
-	firstName = "";
-	lastName = "";
+    userId = 0;
+    firstName = "";
+    lastName = "";
 
-	var login = document.getElementById("loginName").value;
-	var password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
+    var login = document.getElementById("loginName").value;
+    var password = document.getElementById("loginpassword").value;
+    var hash = md5(password);
 
-	document.getElementById("loginResult").innerHTML = "";
+    document.getElementById("loginresult").innerHTML = "";
 
-//	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
-	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
-	var url = urlBase + '/Login.' + extension;
+    var jsonPayload = '{"login" : "' + login + '", "pasword" : "' + hash + '"}';
+    //var jsonPayload = '{"login" : "' + login + '", "pasword" : "' + password + '"}';
+    var url = urlBase + '/Login.' + extension;
 
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.send(jsonPayload);
+    var xhr = new XMLHttpRequest();
+    xhr.open("Post", url, false);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.send(jsonPayload);
+        var jsonObject = JSON.parse( xhr.responseText);
+        userID = jsonObject.id;
+        if(userId < 1)
+        {
+            document.getElementById("loginResult").innerHTML = "User and or Password is invalid";
+            return;
+        }
 
-		var jsonObject = JSON.parse( xhr.responseText );
+        fisrtName = jsonObject.firstName;
+        lastName = jsonObject.lastName;
 
-		userId = jsonObject.id;
-
-		if( userId < 1 )
-		{
-			document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-			return;
-		}
-
-		firstName = jsonObject.firstName;
-		lastName = jsonObject.lastName;
-
-		saveCookie();
-
-		window.location.href = "color.html";
-	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
-
+        saveCookie;
+        window.location.href = ""//insert HTML here
+    }
+    catch(err)
+    {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
 }
 
 function saveCookie()
 {
-	var minutes = 20;
-	var date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+    var minutes = 20;
+    var date new Date();
+    date.setTime(date.getTime()+(minutes*60*1000));
+    document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
@@ -90,86 +85,14 @@ function readCookie()
 	else
 	{
 		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
+    }
 }
 
 function doLogout()
 {
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
-}
-
-function addColor()
-{
-	var newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
-
-	var jsonPayload = '{"color" : "' + newColor + '", "userId" : ' + userId + '}';
-	var url = urlBase + '/AddColor.' + extension;
-
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function()
-		{
-			if (this.readyState == 4 && this.status == 200)
-			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
-	}
-
-}
-
-function searchColor()
-{
-	var srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
-
-	var colorList = "";
-
-	var jsonPayload = '{"search" : "' + srch + '","userId" : ' + userId + '}';
-	var url = urlBase + '/SearchColors.' + extension;
-
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function()
-		{
-			if (this.readyState == 4 && this.status == 200)
-			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-				var jsonObject = JSON.parse( xhr.responseText );
-
-				for( var i=0; i<jsonObject.results.length; i++ )
-				{
-					colorList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
-
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
-	}
-
+    userId = 0;
+    firstName = "";
+    lastName = "";
+    document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    window.location.href = "index.html";
 }
