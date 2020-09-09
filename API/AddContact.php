@@ -20,6 +20,8 @@
 	else
 	{
 		$sql = "insert into contacts (userid,firstname,lastname,phonenumber,email) VALUES (" . $userid . ",'" . $firstname . ",'" . $lastname . ",'" . $phonenumber . ",'" . $email . "')";
+		returnWithError($sql);
+		
 		if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError($conn->error);
