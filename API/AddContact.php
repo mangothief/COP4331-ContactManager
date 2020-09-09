@@ -19,8 +19,7 @@
 	} 
 	else
 	{
-		$sql = "insert into contacts (userid,firstname,lastname,phonenumber,email)
-					VALUES (" . $userid . ",'" . $firstname . ",'" . $lastname . ",'" . $phonenumber . ",'" . $email . "')";
+		$sql = "insert into contacts (userid,firstname,lastname,phonenumber,email) VALUES (" . $userid . ",'" . $firstname . ",'" . $lastname . ",'" . $phonenumber . ",'" . $email . "')";
 		if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError($conn->error);
@@ -32,7 +31,6 @@
 	
 	function getRequestInfo()
 	{
-		returnWithError("error!");
 		return json_decode(file_get_contents('php://input'), true);
 	}
 

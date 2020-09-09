@@ -24,9 +24,7 @@
    else
    {
       // query the database with the user information
-      $sql = "insert into user (userid,username,password,phonenumber,email)
-      VALUES (" . $userid . ",'" . $username . ",'" . $password . ",'" 
-                                 . $phonenumber . ",'" . $email . "')";
+      $sql = "insert into user (userid,username,password,phonenumber,email) VALUES (" . $userid . ",'" . $username . ",'" . $password . ",'" . $phonenumber . ",'" . $email . "')";
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{
@@ -39,7 +37,6 @@
 
    function getRequestInfo()
    {
-      returnWithError("error!");
       return json_decode(file_get_contents('php://input'), true);
    }
 
