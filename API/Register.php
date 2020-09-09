@@ -1,19 +1,10 @@
 <?php
    // fetch JSON request
    $inData = getRequestInfo();
-
-   // userid
-   $userid =$inData['userid'];
    // new username
    $username = $inData['username'];
    // new password
    $password1 = $inData['password'];
-   // new phonenumber
-   $phonenumber = $inData['phonenumber'];
-   // new email
-   $email = $inData['email'];
-
-
 
    // connect to mysql database
    $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
@@ -26,7 +17,7 @@
    else
    {
       // query the database with the user information
-      $sql = "insert into user (userid,username,password,phonenumber,email) VALUES (" . $userid . ",'" . $username . "','" . $password . "','" . $phonenumber . "','" . $email . "')";
+      $sql = "insert into users (username,password,phonenumber,email) VALUES ('" . $username . "','" . $password . "')";
       returnWithError($sql);
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
