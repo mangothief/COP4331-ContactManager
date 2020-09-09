@@ -18,7 +18,7 @@
    {
       // query the database with the user information
       $sql = "insert into users (username,password) VALUES ('" . $username . "','" . $password . "')";
-      returnWithError($sql);
+      //returnWithError($sql);
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{
