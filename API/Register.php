@@ -57,7 +57,7 @@
 
    function returnWithInfo($username, $password, $userid)
    {
-      $retValue = '{"userid":' . $userid . ',"username":"' . $password . '","password":"' . $password . '","error":""}';
+      $retValue = '{"userid":' . $userid . ',"username":"' . $username . '","password":"' . $password . '","error":""}';
 		sendResultInfoAsJson($retValue);
    }
 ?>
