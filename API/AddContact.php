@@ -7,8 +7,11 @@
 	$lastname = $inData["lastname"];
 	$phonenumber = $inData["phonenumber"];
 	$email = $inData["email"];
+	//$datecreated = "";
+	//$datelaston = ""; -> cross ref for userid in users,
+	//                     match datelaston if user exists.
 
-	$conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'contactlistdb');
+	$conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
    
    if ($conn->connect_error) 
 	{
