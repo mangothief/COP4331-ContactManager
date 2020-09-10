@@ -1,0 +1,142 @@
+body{
+	height: 100%;
+	margin:0;
+}
+
+.background
+{
+	background-image: url("../images/cookieBackground.png");
+	height: 100%;
+	background-position: center, center;
+	background-repeat: no-repeat, no-repeat;
+	background-size: cover, cover;
+	position: relative; 
+}
+#cookieTable {
+	font-family: 'Ubuntu', sans-serif;
+	margin-top: 30px;
+	margin-left: 100px;
+	border-collapse: collapse; 
+	width: 80%;
+	border: 1px solid black;
+	font-size: 20px;
+	background-color: white;
+	right: 100%;
+  }
+  
+  #cookieTable th, #cookieTable td 
+  {
+	text-align: left;
+	padding: 10px;
+  }
+  
+  #cookieTable tr 
+  {
+	border-bottom: 1px solid black;
+  }
+  
+  #cookieTable tr.header, #cookieTable tr:hover {
+	background-color: #2ca8d4;
+  }
+
+.buttons
+{
+	font-size: 30px;
+	border-radius: 25px;
+	width: 100%;
+	font-family: 'Ubuntu', sans-serif;
+	background-color: #2ca8d4;
+	opacity: 100%
+}
+
+.buttons:hover
+{
+	background-color: #2ca8d4;
+	color: #FFFFFF;
+	opacity: 50%;
+}
+
+.foreground
+{
+	overflow: hidden;
+	flex: 50%;
+	width: 60%;
+	height: 82.5%;
+	display: inline-block;
+	border-color: 3px solid blue;
+	position: right;
+	position: relative;
+}
+.tableContainer{
+	overflow: hidden;
+	float: 50%;
+	flex: 30%;
+	width: 70%;
+	position: center;
+	position: relative;
+}
+
+#loginDiv
+{
+	position: absolute;
+	font-size: 30px;
+	max-width: 300px;
+	margin: 20px;
+	width: 100%;
+	height: auto;
+	right: 150px;
+	display: block;
+	float: left;
+	margin-top: 50px;
+	
+	font-family: 'Helvetica';
+}
+
+#title
+{
+	background: #2ca8d4;
+	margin-left: 100px;
+	font-size: 35px;
+	width: 21%;
+	text-align: left;
+	font-family: 'Ubuntu', sans-serif;
+	color: white;
+}
+.newContactsInformation
+{
+	font-size: 30px;
+	position: absolute;
+	max-width: 300px;
+	margin: 20px;
+	width: 100%;
+	right: 315px;
+	padding: 20px;
+
+	font-family: 'Helvetica';
+}
+
+#inputFont{
+	font-size: 14pt;
+}
+
+#contactsButton
+{
+	position: absolute;
+	font-size: 30px;
+	max-width: 300px;
+	margin: 20px;
+	width: 100%;
+	height: auto;
+	right: 100px;
+	display: block;
+	float: left;
+	margin-top: 230px;
+	margin-right: 40px;
+	
+	font-family: 'Helvetica';
+}
+#search{
+	margin-top: 50px;
+	margin-left: 100px;
+	font-size: 18pt;
+}
