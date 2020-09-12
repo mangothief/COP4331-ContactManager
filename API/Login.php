@@ -18,7 +18,7 @@
    else
    {
       // query the database with the user information
-      $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' and password='" . $inData["password"] . "'";
+      $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
       //returnWithError($sql);
       $result = $conn->query($sql);
       // check if user and password match records

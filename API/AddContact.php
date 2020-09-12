@@ -13,13 +13,13 @@
 
 	$conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
    
-   if ($conn->connect_error) 
+   	if ($conn->connect_error) 
 	{
 		returnWithError($conn->connect_error);
 	} 
 	else
 	{
-		$sql = "insert into contacts (userid,firstname,lastname,phonenumber,email) VALUES (" . $userid . ",'" . $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "')";
+		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email) VALUES (" . $userid . ",'" . $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "')";
 		//returnWithError($sql);
 		if($result = $conn->query($sql) != TRUE)
 		{
