@@ -19,27 +19,26 @@
 	} 
 	else
 	{
-		// Check if userid is present in users table.
+		// Queries.
+		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email) VALUES (" . $userid . ",'" . $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "')";
 		$primary_key = "SELECT * from users WHERE userid ='" . $userid . "'";
-		$result = $conn->query($primary_key);
-		if (empty($result))
+		$foreign_key = "SELECT * from contacts WHERE userid ='" . $userid . "'";
+		// Results.
+		$userscheck = $conn->query($primary_key);
+		$contactscheck = $conn->query($foreign_key);
+		// Check if userid is present in users table.
+		if (empty($userscheck))
 		{
 			echo "Key not present in users table.";
 			returnWithError("userid: " . $userid);
 		}
-		
 		// Reject new contact if userid already present in contacts table. 
-		$foreign_key = "SELECT * from contacts WHERE userid ='" . $userid . "'";
-		$result = $conn->query($foreign_key);
-		if (!empty($result))
+		else if (!empty($contactscheck))
 		{
 			echo "Key already present in contacts table.";
 			returnWithError("userid: " . $userid);
 		}
-
-		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email) VALUES (" . $userid . ",'" . $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "')";
-		//returnWithError($sql);
-		if($result = $conn->query($sql) != TRUE)
+		else if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError($conn->error);
 		}
