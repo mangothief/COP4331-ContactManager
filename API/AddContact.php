@@ -30,7 +30,8 @@
 */
 
 		$primary_key = "SELECT * from users WHERE userid ='" . $userid . "'";
-		if ($result = $conn->query($primary_key) != TRUE)
+		$result = $conn->query($primary_key)
+		if (empty($result))
 		{
 			echo "Key not present in user db";
 			returnWithError("userid: " . $userid);
