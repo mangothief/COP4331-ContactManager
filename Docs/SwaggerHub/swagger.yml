@@ -1,0 +1,129 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: CookieBook
+  description: API for COP4331 small project.
+
+definitions:
+  Login:
+    type: object 
+    required:
+    - username
+    - password
+    properties:
+      username: 
+        type: string
+        example: myuser
+      password:
+        type: string
+        example: mypass
+      
+  AddContact:
+    type: object
+    required:
+    - userid
+    - firstname
+    - lastname
+    - phonenumber
+    - email
+    properties:
+      userid:
+        type: integer
+        example: 1
+      firstname: 
+        type: string
+        example: myfirst
+      lastname: 
+        type: string
+        example: mylast
+      phonenumber:
+        type: string
+        example: 123-456-7890
+      email:
+        type: string
+        example: email@aol.com
+
+  SearchContactsByName:
+    type: object
+    required:
+    - search
+    properties:
+      search:
+        type: string
+        example: paul
+ 
+host: 206.189.193.36
+basePath: /API
+schemes:
+  - http
+  - https
+  
+paths:
+  /Login.php:
+    post:
+      tags:
+        - users
+      summary: Logs in as a user for contact manager.
+      operationId: doLogin
+      description: User login.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: loginItem
+          description: Login
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  
+  /AddContact.php: 
+    post:
+      tags:
+        - contacts
+      summary: Adds a contact to table.
+      operationId: addContact
+      description: Adds a user to contacts.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: contactItem
+          description: Add the contact.
+          schema:
+            $ref: '#/definitions/AddContact'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+
+  /SearchContactsByName.php: 
+    post:
+      tags:
+        - contacts
+      summary: Searches for contacts with first or last name matching search criterion.
+      operationId: searchContact
+      description: Searches for a contact(s).
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: searchItem
+          description: Search by name.
+          schema:
+            $ref: '#/definitions/SearchContactsByName'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
