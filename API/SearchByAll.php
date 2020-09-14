@@ -7,6 +7,8 @@
     $username = "";
     $firstname = "";
     $lastname = "";
+    $email = "";
+    $phonenumber = "";
 
 	$searchResults = "";
 	$searchCount = 0;
@@ -20,7 +22,7 @@
 	else
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
-        $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"];
+        $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR username LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"];
         $result = $conn->query($sql);
         
         // Number of contacts we must search.
