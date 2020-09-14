@@ -22,7 +22,9 @@
 	else
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
-        $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR username LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"];
+        $sql = "select Name from Colors where Name like '%" . $inData["search"] . "%' and UserID=" . $inData["userId"];
+
+        $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR username LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%'";
         returnWithError($sql);
         $result = $conn->query($sql);
         

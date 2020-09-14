@@ -21,7 +21,7 @@
 	else
 	{
         // Look for email address in contacts.
-        $sql = "SELECT email FROM contacts where phonenumber LIKE '%" . inData["search"];
+        $sql = "SELECT email FROM contacts where phonenumber LIKE '%" . inData["search"] . "%'";
         $result = $conn->query($sql);
         
         // Number of contacts we must search.
