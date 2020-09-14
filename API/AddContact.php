@@ -26,6 +26,10 @@
 		// Results.
 		$userscheck = $conn->query($primary_key);
 		$contactscheck = $conn->query($foreign_key);
+
+		echo("users: " . $userscheck);
+		echo("contacts: " . $contactscheck);
+
 		// Check if userid is present in users table.
 		if (empty($userscheck))
 		{
