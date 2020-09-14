@@ -19,6 +19,14 @@
 	} 
 	else
 	{
+		$users = "SELECT username, password FROM users";
+		$result = $conn->query($users);
+		if ($userid > $result->num_rows)
+		{
+			echo "Key not present in user db";
+			returnWithError("userid: " . $userid);
+		}
+
 		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email) VALUES (" . $userid . ",'" . $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "')";
 		//returnWithError($sql);
 		if($result = $conn->query($sql) != TRUE)

@@ -23,6 +23,7 @@
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
         $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR username LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"];
+        returnWithError($sql);
         $result = $conn->query($sql);
         
         // Number of contacts we must search.
@@ -31,8 +32,8 @@
         // Contacts left to search.
         if ($searchcount > 0)
         {
-            $searchResults = array();
-
+            $searchResults = array("");
+    
             while ($searchCount > 0)
             {
                 $row = $result->fetch_assoc();
@@ -41,7 +42,7 @@
                 // Push json object onto array for matching contact
                 array_push($searchResults, $thisJsonObject);
                 //$searchResults .= $thisJsonObject;
-                returnWithInfo($searchResults);
+                //returnWithInfo($searchResults);
     
                 if ($searchCount != 1)
                 {
