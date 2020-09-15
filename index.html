@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel='icon' href='images/favicon-96x96.png' type='image/x-icon' sizes="96x96" />
+
+        <script src="js/login.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid bg">
+          <div class="row justify-content-center vertical-center">
+            <div class="col-md-auto">
+              <form class="form-container">
+                  <div class="form-group">
+                    <label for="inputEmailLabel">Username</label>
+                    <input type="text" class="form-control" id="inputUsername">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPasswordLabel">Password</label>
+                    <input type="password" class="form-control" id="inputPassword">
+                    <small id="newAccount" class="form-text text-muted">New user?</small>
+                  </div>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        Create Account
+                      </div>
+                      <div class="col-sm">
+                        <button type="submit" onclick="doLogin()" class="btn btn-primary btn-block submit-btn">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
