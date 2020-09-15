@@ -38,6 +38,7 @@
             {
                 $row = $result->fetch_assoc();
                 $thisJsonObject = '{"userid":' . $row["userid"] . '}';
+                echo $thisJsonObject . ", ";
                 //$thisJsonObject = '{"username":"' . $row["username"] . '","firstname":' . $row["firstname"] . '","lastname":' . $row["lastname"] . '","userid":' . $row["userid"] . '"}';
 
                 // Push json object onto array for matching contact
