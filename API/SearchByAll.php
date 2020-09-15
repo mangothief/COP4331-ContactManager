@@ -22,7 +22,7 @@
 	else
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
-        $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR username LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%'";
+        $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%'";
         returnWithError($sql);
         $result = $conn->query($sql);
         
@@ -39,8 +39,6 @@
                 $row = $result->fetch_assoc();
                 $thisJsonObject = '{"userid":' . $row["userid"] . '}';
                 echo $thisJsonObject . ", ";
-                //$thisJsonObject = '{"username":"' . $row["username"] . '","firstname":' . $row["firstname"] . '","lastname":' . $row["lastname"] . '","userid":' . $row["userid"] . '"}';
-
                 // Push json object onto array for matching contact
                 //array_push($searchResults, $thisJsonObject);
                 $searchResults .= $thisJsonObject;
