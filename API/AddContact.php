@@ -17,33 +17,9 @@
 	} 
 	else
 	{
-		// Queries.
+		// Formatted sql query.
 		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email) VALUES (" . $userid . ",'" . $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "')";
-		/*
-		$primary_key = "SELECT * from users WHERE userid ='" . $userid . "'";
-		$foreign_key = "SELECT * from contacts WHERE userid ='" . $userid . "'";
-		// Results.
-		$userscheck = $conn->query($primary_key);
-		$contactscheck = $conn->query($foreign_key);
-		*/
-		/*
-		echo("users: " . $userscheck);
-		echo("contacts: " . $contactscheck);
-		*/
-		/*
-		// Check if userid is present in users table.
-		if (empty($userscheck))
-		{
-			echo "Key not present in users table.";
-			returnWithError("userid: " . $userid);
-		}
-		// Reject new contact if userid already present in contacts table. 
-		else if (!empty($contactscheck))
-		{
-			echo "Key already present in contacts table.";
-			returnWithError("userid: " . $userid);
-		}
-		*/
+		// Result of insert query.
 		if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError($conn->error);
@@ -54,8 +30,6 @@
 		}
 		$conn->close();
 	}
-	
-	returnWithError("");
 	
 	function getRequestInfo()
 	{

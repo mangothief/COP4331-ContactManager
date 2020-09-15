@@ -1,6 +1,6 @@
 <?php
 
-    // Search by contact name. 
+    // Search by all contact attributes. 
 	$inData = getRequestInfo();
     
     $userid = 0;
@@ -22,8 +22,6 @@
 	else
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
-        $sql = "select Name from Colors where Name like '%" . $inData["search"] . "%' and UserID=" . $inData["userId"];
-
         $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR username LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%'";
         returnWithError($sql);
         $result = $conn->query($sql);
@@ -39,7 +37,8 @@
             while ($searchCount > 0)
             {
                 $row = $result->fetch_assoc();
-                $thisJsonObject = '{"username":"' . $row["username"] . '","firstname":' . $row["firstname"] . '","lastname":' . $row["lastname"] . '","userid":' . $row["userid"] . '"}';
+                $thisJsonObject = '{"userid":' . $row["userid"] . '}';
+                //$thisJsonObject = '{"username":"' . $row["username"] . '","firstname":' . $row["firstname"] . '","lastname":' . $row["lastname"] . '","userid":' . $row["userid"] . '"}';
 
                 // Push json object onto array for matching contact
                 array_push($searchResults, $thisJsonObject);
