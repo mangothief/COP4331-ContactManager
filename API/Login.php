@@ -29,7 +29,7 @@
          $password = $row["password"];
          $userid = $row["userid"];
 
-         returnWithInfo($username, $password, $userid);
+         returnWithInfo($userid);
       }
       else
       {
@@ -55,9 +55,10 @@
       sendResultInfoAsJson($retValue);
    }
 
-   function returnWithInfo($username, $password, $userid)
+   function returnWithInfo($userid)
    {
-      $retValue = '{"userid":' . $userid . ',"username":"' . $username . '","password":"' . $password . '","error":""}';
+      //$retValue = '{"userid":' . $userid . '","error":""}';
+      $retValue = '{"userid":' . $userid . '"}';
 		sendResultInfoAsJson($retValue);
    }
 ?>

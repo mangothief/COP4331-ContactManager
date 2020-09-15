@@ -8,12 +8,10 @@
 	$phonenumber = $inData["phonenumber"];
 	$email = $inData["email"];
 	//$datecreated = "";
-	//$datelaston = ""; -> cross ref for userid in users,
-	//                     match datelaston if user exists.
 
 	$conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
    
-   	if ($conn->connect_error) 
+   if ($conn->connect_error) 
 	{
 		returnWithError($conn->connect_error);
 	} 
@@ -45,6 +43,10 @@
 		else if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError($conn->error);
+		}
+		else
+		{
+			echo "Successfully added contact.";
 		}
 		$conn->close();
 	}
