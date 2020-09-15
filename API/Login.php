@@ -58,7 +58,7 @@
    function returnWithInfo($userid)
    {
       //$retValue = '{"userid":' . $userid . '","error":""}';
-      $retValue = '{"userid":' . $userid . '"}';
+      $retValue = '{"userid":' . $userid . '}';
 		sendResultInfoAsJson($retValue);
    }
 ?>
