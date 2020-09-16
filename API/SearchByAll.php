@@ -22,7 +22,7 @@
 	else
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
-        $sql = "SELECT userid,firstname,lastname FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%'";
+        $sql = "SELECT userid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%'";
         returnWithError($sql);
         $result = $conn->query($sql);
         
@@ -75,11 +75,11 @@
 	
 	function returnWithError($err)
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson($retValue);
 	}
 	
-	function returnWithInfo($searchResult)
+	function returnWithInfo($searchResults)
 	{
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson($retValue);
