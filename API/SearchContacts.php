@@ -1,9 +1,13 @@
 <?php
 
-    // Search by phonenumber
+    // Search by all contact attributes. 
 	$inData = getRequestInfo();
     
     $userid = 0;
+    $username = "";
+    $firstname = "";
+    $lastname = "";
+    $email = "";
     $phonenumber = "";
 
 	$searchResults = "";
@@ -17,27 +21,29 @@
 	} 
 	else
 	{
-        // Look for phonenumber in contacts.
-        $sql = "SELECT userid FROM contacts where phonenumber LIKE '%" . inData["search"] . "%'";
+        // Cross-reference searched name with firstnames and lastnames in contacts.
+        $sql = "SELECT userid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%'";
+        returnWithError($sql);
         $result = $conn->query($sql);
         
         // Number of contacts we must search.
-        $searchCount = $result->num_rows;
+        $searchCount .= $result->num_rows;
 
         // Contacts left to search.
         if ($searchcount > 0)
         {
-            $searchResults = array();
-
+            //$searchResults = array("");
+            $searchResults = "[";
             while ($searchCount > 0)
             {
                 $row = $result->fetch_assoc();
-                $thisJsonObject = '{"userid":' . $row["userid"] . '"}';
-
+                $thisJsonObject = '{"userid":' . $row["userid"] . '}';
+                //echo $thisJsonObject . ", ";
+                
                 // Push json object onto array for matching contact
                 //array_push($searchResults, $thisJsonObject);
                 $searchResults .= $thisJsonObject;
-                returnWithInfo($searchResults);
+                //returnWithInfo($searchResults);
     
                 if ($searchCount != 1)
                 {
