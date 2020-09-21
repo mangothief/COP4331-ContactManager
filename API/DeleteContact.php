@@ -1,11 +1,9 @@
 <?php 
-
+    // Delete from contacts table.
     $inData = getRequestInfo();
 
     $userid = $inData["userid"];
-    $username = $inData["username"]
-    $password = $inData["password"];
-
+    $contactid = $inData["contactid"];
 
     $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
 
@@ -15,16 +13,18 @@
     }
     else
     {
-        $sql = "DELETE FROM users (userid,username,password) VALUES (" . $userid . ",'" . $username . "','" . $password . "')";
+        $sql = "DELETE FROM contacts where userid=" . $userid . "AND contactid='" . $contactid . "'";
         returnWithError($sql);
         if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError($conn->error);
-		}
+        }
+        else
+        {
+            returnWithInfo($userid, $contactid, "deleted contact!");
+        }
 		$conn->close();
     }
-
-    returnWithError("");
     
     function getRequestInfo()
 	{
@@ -41,6 +41,11 @@
 	{
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson($retValue);
-	}
-	
+    }
+    
+    function returnWithInfo($userid, $contactid, $info)
+    {
+        $retValue = '{"userid":' . $userid . ',"contactid":"' . $contactid . '","info":"' . $info . '"}';
+        sendResultInfoAsJson($retValue);
+    }
 ?>

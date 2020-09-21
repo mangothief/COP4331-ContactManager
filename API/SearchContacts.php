@@ -1,5 +1,4 @@
 <?php
-
     // Search by all contact attributes. 
 	$inData = getRequestInfo();
     
@@ -17,7 +16,7 @@
       
 	if ($conn->connect_error) 
 	{
-		returnWithError( $conn->connect_error );
+		returnWithError($conn->connect_error);
 	} 
 	else
 	{
@@ -85,5 +84,4 @@
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson($retValue);
 	}
-	
 ?>

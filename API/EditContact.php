@@ -3,8 +3,9 @@
     $inData = getRequestInfo();
 
     $userid = $inData["userid"];
-    $firstname = $inData["firstname"]
-    $password = $inData["password"];
+    $contactid = $inData["contactid"];
+    $firstname = $inData["firstname"];
+    $lastname = $inData["lastname"]
     $email = $inData["email"];
     $phonenumber = $inData["phonenumber"];
 
@@ -16,16 +17,17 @@
     }
     else
     {
-        $sql = "UPDATE contacts SET (firstname,lastname,email,phonenumber) VALUES (" . $firstname . ",'" . $lastname . "','" . $email . "','" . $phonenumber . "') WHERE userid = $userid";
-        returnWithError($sql);
+        $sql = "UPDATE contacts SET firstname='" . $firstname . "', lastname='" . $lastname . "', email='" . $email . "', phonenumber='" . $phonenumber . "' WHERE userid='" . $userid . "' AND contactid='" . $contactid . "'";
         if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError($conn->error);
-		}
+        }
+        else
+        {
+            returnWithInfo($userid, $contactid, "edited contact!");
+        }
 		$conn->close();
     }
-
-    returnWithError("");
     
     function getRequestInfo()
 	{
@@ -44,6 +46,11 @@
 		sendResultInfoAsJson($retValue);
 	}
 
+    function returnWithInfo($userid, $contactid, $info)
+    {
+        $retValue = '{"userid":' . $userid . ',"contactid":"' . $contactid . '","info":"' . $info . '"}';
+        sendResultInfoAsJson($retValue);
+    }
 ?>
 
 

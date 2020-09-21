@@ -1,5 +1,5 @@
 <?php
-   // fetch JSON request
+   // Login as a user.
    $inData = getRequestInfo();
 
    $userid = 0;

@@ -1,5 +1,5 @@
 <?php
-   // fetch JSON request
+   // Register a user.
    $inData = getRequestInfo();
    // new username
    $username = $inData['username'];
@@ -23,11 +23,13 @@
       if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError($conn->error);
-		}
+      }
+      else
+      {
+         returnWithInfo($userid, "registered user!");
+      }
 		$conn->close();
 	}
-	
-	returnWithError("");
 
    function getRequestInfo()
    {
@@ -46,9 +48,9 @@
       sendResultInfoAsJson($retValue);
    }
 
-   function returnWithInfo($username, $password, $userid)
+   function returnWithInfo($userid, $info)
    {
-      $retValue = '{"userid":' . $userid . ',"username":"' . $username . '","password":"' . $password . '","error":""}';
+      $retValue = '{"userid":' . $userid . ',"info":"' . $info '"}';
 		sendResultInfoAsJson($retValue);
    }
 ?>
