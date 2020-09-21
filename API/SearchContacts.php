@@ -2,12 +2,8 @@
     // Search by all contact attributes. 
 	$inData = getRequestInfo();
     
-    $userid = 0;
-    $username = "";
-    $firstname = "";
-    $lastname = "";
-    $email = "";
-    $phonenumber = "";
+    $userid = $inData["userid"];
+    $contactid = 0;
 
 	$searchResults = "";
 	$searchCount = 0;
@@ -21,7 +17,7 @@
 	else
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
-        $sql = "SELECT userid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%'";
+        $sql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
         returnWithError($sql);
         $result = $conn->query($sql);
         

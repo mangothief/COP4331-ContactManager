@@ -17,8 +17,8 @@
    else
    {
       // query the database with the user information
-      $sql = "INSERT into users (username,password) VALUES ('" . $username . "','" . $password . "')";
-      //returnWithError($sql);
+      $sql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
+      echo $sql;
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{
