@@ -13,11 +13,12 @@
     }
     else
     {
-        $sql = "DELETE FROM contacts where userid=" . $userid . "AND contactid='" . $contactid . "'";
-        returnWithError($sql);
+        $sql = "DELETE FROM contacts where (userid=" . $userid . " AND contactid='" . $contactid . "')";
+        
         if($result = $conn->query($sql) != TRUE)
 		{
-			returnWithError($conn->error);
+            echo $sql;
+			//returnWithError($conn->error);
         }
         else
         {
