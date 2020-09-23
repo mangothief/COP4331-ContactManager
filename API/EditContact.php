@@ -24,8 +24,7 @@
         }
         else
         {
-            echo "edited contact!";
-            //returnWithInfo($userid, $contactid, "edited contact!");
+            returnWithInfo($userid, $contactid, "edited contact!");
         }
 		$conn->close();
     }
@@ -49,7 +48,7 @@
 
     function returnWithInfo($userid, $contactid, $info)
     {
-        //$retValue = '{"userid":"' . $userid . ',"contactid":"' . $contactid . '","info":"' . $info . '"}';
+        $retValue = '{"userid":' . $userid . ',"contactid":' . $contactid . ',"info":"' . $info . '"}';
         sendResultInfoAsJson($retValue);
     }
 ?>

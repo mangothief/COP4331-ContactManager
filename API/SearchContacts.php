@@ -28,11 +28,11 @@
         if ($searchcount > 0)
         {
             //$searchResults = array("");
-            $searchResults = "[";
+            $searchResults .= "[";
             while ($searchCount > 0)
             {
                 $row = $result->fetch_assoc();
-                $thisJsonObject = '{"userid":' . $row["userid"] . '}';
+                $thisJsonObject = '{"contactid":' . $row["contactid"] . '}';
                 //echo $thisJsonObject . ", ";
                 
                 // Push json object onto array for matching contact

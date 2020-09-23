@@ -13,16 +13,15 @@
     }
     else
     {
-        $sql = "DELETE FROM contacts where (userid=" . $userid . " AND contactid='" . $contactid . "')";
+        $sql = "DELETE FROM contacts where userid='" . $userid . "' AND contactid=$contactid";
         
         if($result = $conn->query($sql) != TRUE)
 		{
-			returnWithError($conn->error);
+			returnWithError("Couldn't delete contact.");
         }
         else
         {
-            echo "deleted contact."
-            //returnWithInfo($userid, $contactid, "deleted contact!");
+            returnWithInfo($userid, $contactid, "successfully deleted contact!");
         }
 		$conn->close();
     }
@@ -46,7 +45,7 @@
     
     function returnWithInfo($userid, $contactid, $info)
     {
-        $retValue = '{"userid":' . $userid . ',"contactid":"' . $contactid . '","info":"' . $info . '"}';
+        $retValue = '{"userid":' . $userid . ',"contactid":' . $contactid . ',"info":"' . $info . '"}';
         sendResultInfoAsJson($retValue);
     }
 ?>

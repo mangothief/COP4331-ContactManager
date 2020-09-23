@@ -3,7 +3,6 @@
 	$inData = getRequestInfo();
 	
 	$userid = $inData["userid"];
-	$contactid = $inData["contactid"]
 	$firstname = $inData["firstname"];
 	$lastname = $inData["lastname"];
 	$phonenumber = $inData["phonenumber"];
@@ -20,7 +19,7 @@
 		// Get current date. 
 		$datecreated = date("Y/m/d");
 		// Formatted sql query.
-		$sql = "INSERT into contacts (userid,contactid,firstname,lastname,phonenumber,email,datecreated) VALUES (" . $userid . ",'" . $contactid . ",'" .  $firstname . ",'" . $lastname . ",'" . $phonenumber . ",'" . $email . ",'" . $datecreated . "')";
+		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
 		// Result of insert query.
 		if($result = $conn->query($sql) != TRUE)
 		{
@@ -28,8 +27,7 @@
 		}
 		else
 		{
-			echo "added contact!";
-			//returnWithInfo($userid, $contactid, "added contact!");
+			returnWithInfo($userid, $conn->insert_id, "added contact!");
 		}
 		$conn->close();
 	}
@@ -53,7 +51,7 @@
 
 	function returnWithInfo($userid, $contactid, $info)
     {
-        $retValue = '{"userid":' . $userid . ',"contactid":"' . $contactid . '","info":"' . $info . '"}';
+        $retValue = '{"userid":' . $userid . ',"contactid":' . $contactid . ',"info":"' . $info . '"}';
         sendResultInfoAsJson($retValue);
     }
 ?>

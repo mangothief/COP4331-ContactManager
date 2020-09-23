@@ -1,10 +1,11 @@
 <?php
    // Register a user.
    $inData = getRequestInfo();
-   // new username
+
    $username = $inData['username'];
-   // new password
    $password = $inData['password'];
+   $datecreated = date("Y/m/d");
+   $datelaston = $datecreated;
 
    // connect to mysql database
    $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
@@ -17,7 +18,7 @@
    else
    {
       // query the database with the user information
-      $sql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
+      $sql = "INSERT into users(username,password,datecreated,datelaston) VALUES ('" . $username . "','" . $password . "','" . $datecreated . "','" . $datelaston . "')";
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{
@@ -25,8 +26,7 @@
       }
       else
       {
-         echo "registered user!";
-         //returnWithInfo($userid, "registered user!");
+         returnWithInfo($userid, "registered user!");
       }
 		$conn->close();
 	}
