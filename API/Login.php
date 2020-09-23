@@ -13,7 +13,7 @@
    // check for connectivity issues
    if ($conn->connect_error) 
    {
-      returnWithError($conn->connect_error);
+      echo "Connection error."
    }
    else
    {
@@ -29,11 +29,11 @@
          $password = $row["password"];
          $userid = $row["userid"];
 
-         returnWithInfo($userid);
+         returnWithInfo($userid, "Successful Login!");
       }
       else
       {
-         returnWithError("No Records Found");
+         echo "No Records Found";
       }
       $conn->close();
    }
@@ -51,14 +51,13 @@
 
    function returnWithError($err)
    {
-      $retValue = '{"userid:0, "username":"","password":"","error":"' . $err . '"}';
+      $retValue = '{"error":"' . $err . '"}';
       sendResultInfoAsJson($retValue);
    }
 
-   function returnWithInfo($userid)
+   function returnWithInfo($userid, $info)
    {
-      //$retValue = '{"userid":' . $userid . '","error":""}';
-      $retValue = '{"userid":' . $userid . '}';
+      $retValue = '{"userid":"' . $userid . ',"info":"' . $info . '"}';
 		sendResultInfoAsJson($retValue);
    }
 ?>
