@@ -18,11 +18,11 @@
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
         $sql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
-        returnWithError($sql);
+        //returnWithError($sql);
         $result = $conn->query($sql);
         
         // Number of contacts we must search.
-        $searchCount .= $result->num_rows;
+        $searchCount = $result->num_rows;
 
         // Contacts left to search.
         if ($searchcount > 0)

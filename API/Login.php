@@ -29,11 +29,12 @@
          $password = $row["password"];
          $userid = $row["userid"];
 
-         returnWithInfo($userid, "Successful Login!");
+         echo "successful login!";
+         //returnWithInfo($userid, "Successful Login!");
       }
       else
       {
-         echo "No Records Found";
+         returnWithError("No Records Found");
       }
       $conn->close();
    }
