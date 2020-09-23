@@ -28,7 +28,8 @@
 		}
 		else
 		{
-			returnWithInfo($userid, $contactid, "added contact!");
+			echo "added contact!";
+			//returnWithInfo($userid, $contactid, "added contact!");
 		}
 		$conn->close();
 	}

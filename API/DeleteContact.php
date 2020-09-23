@@ -17,12 +17,12 @@
         
         if($result = $conn->query($sql) != TRUE)
 		{
-            echo $sql;
-			//returnWithError($conn->error);
+			returnWithError($conn->error);
         }
         else
         {
-            returnWithInfo($userid, $contactid, "deleted contact!");
+            echo "deleted contact."
+            //returnWithInfo($userid, $contactid, "deleted contact!");
         }
 		$conn->close();
     }

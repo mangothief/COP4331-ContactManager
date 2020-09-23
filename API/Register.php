@@ -18,7 +18,6 @@
    {
       // query the database with the user information
       $sql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
-      echo $sql;
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{
@@ -26,7 +25,8 @@
       }
       else
       {
-         returnWithInfo($userid, "registered user!");
+         echo "registered user!";
+         //returnWithInfo($userid, "registered user!");
       }
 		$conn->close();
 	}
@@ -44,7 +44,7 @@
 
    function returnWithError($err)
    {
-      $retValue = '{"userid:0, "username":"","password":"","error":"' . $err . '"}';
+      $retValue = '{"error":"' . $err . '"}';
       sendResultInfoAsJson($retValue);
    }
 
