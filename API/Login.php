@@ -13,13 +13,12 @@
    // check for connectivity issues
    if ($conn->connect_error) 
    {
-      echo "Connection error."
+      returnWithError($conn->connect_error);
    }
    else
    {
       // query the database with the user information
       $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
-      //returnWithError($sql);
       $result = $conn->query($sql);
       // check if user and password match records
       if ($result->num_rows > 0)
@@ -29,8 +28,7 @@
          $password = $row["password"];
          $userid = $row["userid"];
 
-         echo "successful login!";
-         //returnWithInfo($userid, "Successful Login!");
+         returnWithInfo($userid, "Successful Login!");
       }
       else
       {
@@ -52,13 +50,13 @@
 
    function returnWithError($err)
    {
-      $retValue = '{"error":"' . $err . '"}';
+      $retValue = '{"userid":"","username":"","password":"","error":"' . $err . '"}';
       sendResultInfoAsJson($retValue);
    }
 
    function returnWithInfo($userid, $info)
    {
-      $retValue = '{"userid":"' . $userid . ',"info":"' . $info . '"}';
+      $retValue = '{"userid":"' . $userid . '","info":"' . $info . '"}';
 		sendResultInfoAsJson($retValue);
    }
 ?>
