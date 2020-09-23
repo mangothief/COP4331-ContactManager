@@ -25,9 +25,28 @@ function doLogin()
         }
     }
     */
+    xhr.send(jsonPayload);
+
+    xhr.onload = function() {
+        alert(`Loaded: ${xhr.status} ${xhr.response}`);
+    };
+    xhr.onerror = function() { // only triggers if the request couldn't be made at all
+        alert(`Network Error`);
+    };
+
+    xhr.onprogress = function(event) { // triggers periodically
+        // event.loaded - how many bytes downloaded
+        // event.lengthComputable = true if the server sent Content-Length header
+        // event.total - total number of bytes (if lengthComputable)
+        alert(`Received ${event.loaded} of ${event.total}`);
+    };
+
+    alert("xhr stuff done");
     try
 	{
-        xhr.send(jsonPayload);
+
+
+
         //xhr.onreadystatechange = alert(xhr.responseType);
         var jsonObject = JSON.parse(xhr.response);
         alert(jsonObject);
