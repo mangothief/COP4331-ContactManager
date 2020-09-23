@@ -13,15 +13,25 @@
     }
     else
     {
-        $sql = "DELETE FROM contacts where userid='" . $userid . "' AND contactid=$contactid";
-        
-        if($result = $conn->query($sql) != TRUE)
-		{
-			returnWithError("Couldn't delete contact.");
-        }
-        else
+        // Check if contact exists.
+        $sql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+        result = $conn->query($sql);
+        if (result->num_rows > 0)
         {
-            returnWithInfo($userid, $contactid, "successfully deleted contact!");
+            $sql = "DELETE FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+        
+            if ($result = $conn->query($sql) != TRUE)
+            {
+                returnWithError("Couldn't delete contact.");
+            }
+            else
+            {
+                returnWithInfo($userid, $contactid, "Successfully deleted contact!");
+            }
+        }
+        else 
+        {
+            returnWithError("Contact not found.")
         }
 		$conn->close();
     }

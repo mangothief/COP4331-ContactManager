@@ -7,6 +7,7 @@
    $username = "";
    // password attempt
    $password = "";
+   $datelaston = date("Y/m/d");
    
    // connect to mysql database
    $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
@@ -24,9 +25,11 @@
       if ($result->num_rows > 0)
       {
          $row = $result->fetch_assoc();
-         $username = $row["username"];
-         $password = $row["password"];
+         //$username = $row["username"];
+         //$password = $row["password"];
          $userid = $row["userid"];
+
+         //update datelaston
 
          returnWithInfo($userid, "Successful Login!");
       }
