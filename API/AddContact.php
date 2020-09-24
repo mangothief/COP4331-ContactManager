@@ -18,18 +18,20 @@
 	else
 	{
 		// Use first available contactid.
-		$sql = "SELECT from contacts (userid, contactid) VALUES ('" . $userid . "','" . $contactid . "')";
+		$sql = "SELECT from contacts (userid, contactid) VALUES (' . $userid . ',' . $contactid . ')";
+		echo $sql;
 		$result = $conn->query($sql);
 		while ($result->num_rows > 0)
 		{
 			$contactid++;
-			$sql = "SELECT from contacts (userid, contactid) VALUES ('" . $userid . "','" . $contactid . "')";
+			$sql = "SELECT from contacts (userid, contactid) VALUES (' . $userid . ',' . $contactid . ')";
 			$result = $conn->query($sql);
+			echo $contactid;
 		}	
 		// Get current date. 
 		$datecreated = date("Y/m/d");
 		// Formatted sql query.
-		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
+		$sql = "INSERT into contacts (userid,contactid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" . $contactid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
 		// Result of insert query.
 		if($result = $conn->query($sql) != TRUE)
 		{
