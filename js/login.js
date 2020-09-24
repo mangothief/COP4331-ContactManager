@@ -21,7 +21,7 @@ function doLogin()
         if(xhr.status == 500)
         {
             alert(`500 internal server error`);
-        }
+        } 
         else if(xhr.status == 200)
         {
             alert(`Response is \"${xhr.response}\"`);
@@ -36,6 +36,10 @@ function doLogin()
             {
                 alert(`Login Success!`);
             }
+        }
+        else
+        {
+            alert(`Unspecified error: error code ${xhr.status}`);
         }
     };
     xhr.onerror = function() { // only triggers if the request couldn't be made at all
