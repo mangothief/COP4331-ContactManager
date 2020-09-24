@@ -15,20 +15,9 @@ function doLogin()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    /*
-    xhr.send(jsonPayload);
-    xhr.onreadystatechange = function()
-    {
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200)
-        {
-            alert(xhr.responseText);
-        }
-    }
-    */
     xhr.send(jsonPayload);
 
     xhr.onload = function() {
-        alert(`Loaded: ${xhr.status} ${xhr.response}`);
         if(xhr.status == 500)
         {
             alert(`500 internal server error`);
@@ -59,6 +48,4 @@ function doLogin()
         // event.total - total number of bytes (if lengthComputable)
         alert(`Received ${event.loaded} of ${event.total}`);
     };
-
-    alert("xhr stuff done");
 }
