@@ -7,20 +7,29 @@
 	$lastname = $inData["lastname"];
 	$phonenumber = $inData["phonenumber"];
 	$email = $inData["email"];
+	$contactid = 0;
 
 	$conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
    
-   if ($conn->connect_error) 
+   	if ($conn->connect_error) 
 	{
 		returnWithError($conn->connect_error);
 	} 
 	else
 	{
+		// Use first available contactid.
+		$sql = "SELECT from contacts (userid, contactid) VALUES ('" . $userid . "','" . $contactid . "')";
+		$result = $conn->query($sql);
+		while ($result->num_rows > 0)
+		{
+			$contactid++;
+			$sql = "SELECT from contacts (userid, contactid) VALUES ('" . $userid . "','" . $contactid . "')";
+			$result = $conn->query($sql);
+		}	
 		// Get current date. 
 		$datecreated = date("Y/m/d");
 		// Formatted sql query.
-		$contactid = conn->insert_id; 
-		$sql = "INSERT into contacts (userid,contactid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" . $contactid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
+		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
 		// Result of insert query.
 		if($result = $conn->query($sql) != TRUE)
 		{
@@ -30,8 +39,8 @@
 		{
 			returnWithInfo($userid, $contactid, "added contact!");
 		}
-		$conn->close();
 	}
+	$conn->close();
 	
 	function getRequestInfo()
 	{
