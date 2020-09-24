@@ -18,13 +18,13 @@
    }
    else
    {
-      $userid = 0;
-      $contactid = 5;
+      $userid = 2;
+      $contactid = 0;
       $password = "mypass";
       $firstname = "myfirst";
       $lastname = "mylast";
       $email = "e@aol.com";
-
+      $search = "j"
 
       $addsql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
       echo "Add\n";
