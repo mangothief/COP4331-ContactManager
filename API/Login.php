@@ -41,7 +41,7 @@
       echo $editsql;
       echo "\n";
 
-      $searchsql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
+      $searchsql = "SELECT contactid FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $inData["userid"];
       echo "Search\n";
       echo $searchsql;
       echo "\n";
