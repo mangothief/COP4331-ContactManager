@@ -18,10 +18,6 @@
    }
    else
    {
-      // query the database with the user information
-      $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
-      echo $sql;
-
       $sql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
       echo $sql;
 
@@ -32,6 +28,10 @@
       echo $sql;
 
       $sql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
+      echo $sql;
+
+      // query the database with the user information
+      $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
       echo $sql;
 
       $result = $conn->query($sql);
