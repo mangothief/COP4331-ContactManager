@@ -66,78 +66,6 @@ function addContact()
     }
 }
 
-function createTable(jsonData) {
-
-    
-    var col = [];
-    for (var i = 2; i < jsonData.length; i++) {
-        for (var key in jsonData[i]) {
-            if (col.indexOf(key) === -1) {
-                col.push(key);
-            }
-        }
-    }
-    col.push(" ");
-
-    
-    var table = document.createElement("tbody");
-    var tr = table.insertRow(-1);                 
-
-    for (var i = 2; i < col.length; i++) 
-    {
-        var th = document.createElement("th");    
-        th.innerHTML = col[i];
-        tr.appendChild(th);
-    }
-
-   
-    for (var i = 0; i < jsonData.length; i++) 
-    {
-        tr = table.insertRow(-1);
-        for (var j = 2; j < col.length; j++) {
-            var tabCell = tr.insertCell(-1);
-            if(j == col.length - 1)
-            {
-                tabCell.innerHTML = '<button button type="button" class="btn btn-lg btn-success btn-space" data-toggle="modal" data-target="#editForm" id = "' + jsonData[i][col[0]] + '" onclick="editClick(this.id)" ><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Edit</button>';
-            }
-            else
-            {
-                tabCell.innerHTML = jsonData[i][col[j]];
-            }
-        }
-    }
-
-    var divContainer = document.getElementById("cookieTable");
-    divContainer.innerHTML = "";
-    divContainer.appendChild(table);
-}
-
-function searchContacts()
-{
-
-    var searchQuery = document.getElementById("search").value;
-    var jsonPayload = '{"search" : "' + searchQuery + '", "userId" : ' + userId + '}';
-	var url = urlBase + '/searchContacts' + urlExtension;
-
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.send(jsonPayload);
-
-		var jsonObject = JSON.parse( xhr.responseText );
-
-      // Setup Table
-      createTable(jsonObject.results);
-
-	}
-	catch(err)
-	{
-		alert(err.message);
-	}
-
-}
 /*
 function addRow() 
 {
@@ -163,6 +91,7 @@ function deleteRow(obj)
     var table = document.getElementById("cookieTable");
     table.deleteRow(index);
 }
+
 function closeWindow()
 {
     document.getElementById("addWindow").style.display = "none";
