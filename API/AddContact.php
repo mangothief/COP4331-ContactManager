@@ -18,13 +18,13 @@
 	else
 	{
 		// Use first available contactid.
-		$sql = "SELECT from contacts (userid, contactid) VALUES ('" . $userid . "','" . $contactid . "')";
+		$sql = "SELECT from contacts (userid, contactid) VALUES (' . $userid . ',' . $contactid . ')";
 		echo $sql;
 		$result = $conn->query($sql);
 		while ($result->num_rows > 0)
 		{
 			$contactid++;
-			$sql = "SELECT from contacts (userid, contactid) VALUES ('" . $userid . "','" . $contactid . "')";
+			$sql = "SELECT from contacts (userid, contactid) VALUES (' . $userid . ',' . $contactid . ')";
 			$result = $conn->query($sql);
 			echo $contactid;
 		}	
