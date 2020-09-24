@@ -29,7 +29,7 @@
 		// Get current date. 
 		$datecreated = date("Y/m/d");
 		// Formatted sql query.
-		$sql = "INSERT into contacts (userid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
+		$sql = "INSERT into contacts (userid,contactid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" . $contactid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
 		// Result of insert query.
 		if($result = $conn->query($sql) != TRUE)
 		{
