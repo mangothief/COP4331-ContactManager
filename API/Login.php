@@ -21,6 +21,19 @@
       // query the database with the user information
       $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
       echo $sql;
+
+      $sql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+      echo $sql;
+
+      $sql = "SELECT* from contacts WHERE userid="' . $userid . '"AND contactid="' . $contactid . '"";
+      echo $sql;
+      
+      $sql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
+      echo $sql;
+
+      $sql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
+      echo $sql;
+
       $result = $conn->query($sql);
       // check if user and password match records
       if ($result->num_rows > 0)
