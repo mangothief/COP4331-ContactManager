@@ -18,17 +18,14 @@
    }
    else
    {
-      $sql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
-      echo $sql;
-
-      $sql = "SELECT* from contacts WHERE userid="' . $userid . '"AND contactid="' . $contactid . '"";
-      echo $sql;
+      $addsql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+      echo $addsql;
       
-      $sql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
-      echo $sql;
+      $registersql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
+      echo $registersql;
 
-      $sql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
-      echo $sql;
+      $searchsql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
+      echo $searchsql;
 
       // query the database with the user information
       $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
