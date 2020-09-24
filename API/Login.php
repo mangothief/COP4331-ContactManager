@@ -18,18 +18,37 @@
    }
    else
    {
+      $userid = 0;
+      $contactid = 5;
+      $password = "mypass";
+      $firstname = "myfirst";
+      $lastname = "mylast";
+      $email = "e@aol.com";
+
+
       $addsql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+      echo "Add\n";
       echo $addsql;
+      echo "\n";
       
       $registersql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
+      echo "Register\n";
       echo $registersql;
+      echo "\n";
+
+      $editsql = "UPDATE contacts SET firstname='" . $firstname . "', lastname='" . $lastname . "', email='" . $email . "', phonenumber='" . $phonenumber . "' WHERE userid='" . $userid . "' AND contactid='" . $contactid . "'";
+      echo "Edit\n";
+      echo $editsql;
+      echo "\n";
 
       $searchsql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
+      echo "Search\n";
       echo $searchsql;
+      echo "\n";
 
       // query the database with the user information
       $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
-      echo $sql;
+      //echo $sql;
 
       $result = $conn->query($sql);
       // check if user and password match records
