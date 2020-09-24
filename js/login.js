@@ -1,7 +1,7 @@
 var userID = 0;
 var firstName = "";
 var lastName = "";
-var url = "http://206.189.193.36//API/Login.php";
+var url = "http://www.cookiebook.team/API/Login.php";
 
 function doLogin()
 {
