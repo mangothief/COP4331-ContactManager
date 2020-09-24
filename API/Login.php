@@ -20,6 +20,7 @@
    {
       // query the database with the user information
       $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
+      echo $sql;
       $result = $conn->query($sql);
       // check if user and password match records
       if ($result->num_rows > 0)

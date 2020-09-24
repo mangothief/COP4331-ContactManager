@@ -18,7 +18,7 @@
 	else
 	{
 		// Use first available contactid.
-		$sql = "SELECT* from contacts WHERE userid=" . $userid . "AND contactid=" . $contactid;
+		$sql = "SELECT* from contacts WHERE userid="' . $userid . '"AND contactid="' . $contactid . '"";
 		echo $sql;
 		$result = $conn->query($sql);
 		while ($result->num_rows > 0)

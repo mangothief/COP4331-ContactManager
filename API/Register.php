@@ -4,10 +4,10 @@
 
    $username = $inData['username'];
    $password = $inData['password'];
-   $datecreated = date("Y/m/d");
-   $datelaston = $datecreated;
+   //$datecreated = date("Y/m/d");
+   //$datelaston = $datecreated;
 
-   echo $datecreated;
+   //echo $datecreated;
 
    // connect to mysql database
    $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
@@ -20,7 +20,8 @@
    else
    {
       // query the database with the user information
-      $sql = "INSERT into users(username,password,datecreated,datelaston) VALUES ('" . $username . "','" . $password . "','" . $datecreated . "','" . $datelaston . "')";
+      $sql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
+      echo $sql;
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{

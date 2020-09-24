@@ -18,31 +18,27 @@
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
         $sql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
+        echo $sql;
         $result = $conn->query($sql);
         
         // Number of contacts we must search.
         $searchCount = $result->num_rows;
-
+        echo $searchCount;
         // Contacts left to search.
         if ($searchcount > 0)
         {
-            $searchResults = array("");
-            //$searchResults .= "[";
+            $searchResults .= "[";
             while ($searchCount > 0)
             {
                 $row = $result->fetch_assoc();
                 $thisJsonObject = '{"contactid":' . $row["contactid"] . '}';
-                //echo $thisJsonObject . ", ";
                 
                 // Push json object onto array for matching contact
-                array_push($searchResults, $thisJsonObject);
-                //$searchResults .= $thisJsonObject;
-                //returnWithInfo($searchResults);
+                $searchResults .= $thisJsonObject;
     
-                if ($searchCount != 1)
+                if ($searchCount > 1)
                 {
-                    //$searchResults .= ",";
-                    array_push($searchResults, ",");
+                    $searchResults .= ",";
                 }
 
                 $searchCount--; // decrement search
@@ -76,7 +72,7 @@
 	
 	function returnWithInfo($searchResults)
 	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
+		$retValue = '{"results":[' . $searchResults . ']"}';
 		sendResultInfoAsJson($retValue);
 	}
 ?>
