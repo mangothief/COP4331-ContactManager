@@ -18,6 +18,7 @@ function doLogin()
     xhr.send(jsonPayload);
 
     xhr.onload = function() {
+        alert(`Loaded: ${xhr.status} ${xhr.response}`);
         if(xhr.status == 500)
         {
             alert(`500 internal server error`);
@@ -52,4 +53,6 @@ function doLogin()
         // event.total - total number of bytes (if lengthComputable)
         alert(`Received ${event.loaded} of ${event.total}`);
     };
+
+    alert("Finished xhr");
 }
