@@ -5,7 +5,7 @@
     $userid = $inData["userid"];
     $contactid = $inData["contactid"];
     $firstname = $inData["firstname"];
-    $lastname = $inData["lastname"]
+    $lastname = $inData["lastname"];
     $email = $inData["email"];
     $phonenumber = $inData["phonenumber"];
 
@@ -19,6 +19,7 @@
     {
         $sql = "UPDATE contacts SET firstname='" . $firstname . "', lastname='" . $lastname . "', email='" . $email . "', phonenumber='" . $phonenumber . "' WHERE userid='" . $userid . "' AND contactid='" . $contactid . "'";
         echo $sql;
+        
         if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError("contact edit failed.");

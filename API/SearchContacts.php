@@ -2,11 +2,14 @@
     // Search by all contact attributes. 
 	$inData = getRequestInfo();
     
+    $firstname = "";
+    $lastname = "";
+    $email = "";
     $userid = $inData["userid"];
     $contactid = 0;
 
 	$searchResults = "";
-	$searchCount = 0;
+    $searchCount = 0;
 
     $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
       
@@ -16,9 +19,11 @@
 	} 
 	else
 	{
+        $search = $inData["search"];
         // Cross-reference searched name with firstnames and lastnames in contacts.
-        $sql = "SELECT contactid FROM contacts where firstname LIKE '%" . $inData["search"] . "%' OR lastname LIKE '%" . $inData["search"] . "%' OR email LIKE '%" . $inData["search"] . "%' AND userid=" . $inData["userid"];
+        $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid;
         echo $sql;
+        
         $result = $conn->query($sql);
         
         // Number of contacts we must search.

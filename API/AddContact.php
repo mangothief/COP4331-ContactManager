@@ -18,14 +18,14 @@
 	else
 	{
 		// Use first available contactid.
-		$sql = "SELECT* from contacts WHERE userid="' . $userid . '"AND contactid="' . $contactid . '"";
-		echo $sql;
-		$result = $conn->query($sql);
+		$check = "SELECT* FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+		echo $check;
+		$result = $conn->query($check);
 		while ($result->num_rows > 0)
 		{
 			$contactid++;
-			$sql = "SELECT* from contacts WHERE userid=" . $userid . "AND contactid=" . $contactid;
-			$result = $conn->query($sql);
+			$check = "SELECT* FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+			$result = $conn->query($check);
 			echo $contactid;
 		}	
 		// Get current date. 

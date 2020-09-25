@@ -16,8 +16,9 @@
         // Check if contact exists.
         $sql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
         echo $sql;
-        result = $conn->query($sql);
-        if (result->num_rows > 0)
+        
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0)
         {
             $sql = "DELETE FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
         
