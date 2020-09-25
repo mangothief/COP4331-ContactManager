@@ -31,7 +31,7 @@
         echo "\nnum rows:" . $searchCount . "\n";
         //echo $searchCount;
         // Contacts left to search.
-        if ($searchcount > 0)
+        if ($searchCount > 0)
         {
             echo "here\n";
             $searchResults .= "[";
