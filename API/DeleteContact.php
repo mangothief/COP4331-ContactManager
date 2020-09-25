@@ -9,7 +9,7 @@
 
     if ($conn->connect_error)
     {
-        returnWithError($conn->connect_error);
+        returnWithError("Connection Failed.");
     }
     else
     {
@@ -23,11 +23,11 @@
         
             if ($result = $conn->query($sql) != TRUE)
             {
-                returnWithError("Couldn't delete contact.");
+                returnWithError("Deletion Failed.");
             }
             else
             {
-                returnWithInfo($userid, $contactid, "Successfully deleted contact!");
+                returnWithInfo($userid, $contactid, "Successfully Deleted Contact.");
             }
         }
         else 

@@ -7,14 +7,15 @@
    $username = "";
    // password attempt
    $password = "";
-   $datelaston = date("Y/m/d");
-   
+   //$datelaston = date("Y/m/d");
+   $datelaston = date("m/d/Y h:i:s a", time());
+
    // connect to mysql database
    $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
    // check for connectivity issues
    if ($conn->connect_error) 
    {
-      returnWithError($conn->connect_error);
+      returnWithError("Login Failed.");
    }
    else
    {
@@ -39,7 +40,7 @@
       }
       else
       {
-         returnWithError("No Records Found");
+         returnWithError("No Matching Records Found");
       }
       $conn->close();
    }
@@ -57,7 +58,7 @@
 
    function returnWithError($err)
    {
-      $retValue = '{"userid":"","username":"","password":"","error":"' . $err . '"}';
+      $retValue = '{"error":"' . $err . '"}';
       sendResultInfoAsJson($retValue);
    }
 

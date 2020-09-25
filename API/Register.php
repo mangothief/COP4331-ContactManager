@@ -4,7 +4,7 @@
 
    $username = $inData['username'];
    $password = $inData['password'];
-   $datecreated = date("Y/m/d");
+   $datecreated = date("m/d/Y h:i:s a", time());
    $datelaston = $datecreated;
 
    //echo $datecreated;
@@ -15,7 +15,7 @@
    // check for connectivity issues
    if ($conn->connect_error) 
    {
-      returnWithError($conn->connect_error);
+      returnWithError("Connection Failed.");
    }
    else
    {
@@ -25,11 +25,11 @@
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{
-			returnWithError($conn->error);
+			returnWithError("Register Failed.");
       }
       else
       {
-         returnWithInfo($username, "registered user!");
+         returnWithInfo("Registered User!");
       }
 		$conn->close();
 	}
@@ -51,9 +51,9 @@
       sendResultInfoAsJson($retValue);
    }
 
-   function returnWithInfo($username, $info)
+   function returnWithInfo($info)
    {
-      $retValue = '{"username":"' . $username . '","info":"' . $info . '"}';
+      $retValue = '{"info":"' . $info . '"}';
 		sendResultInfoAsJson($retValue);
    }
 ?>

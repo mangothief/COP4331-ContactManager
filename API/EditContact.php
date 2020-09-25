@@ -13,7 +13,7 @@
 
     if ($conn->connect_error)
     {
-        returnWithError($conn->connect_error);
+        returnWithError("Connection Failed.");
     }
     else
     {
@@ -22,11 +22,11 @@
         
         if($result = $conn->query($sql) != TRUE)
 		{
-			returnWithError("contact edit failed.");
+			returnWithError("Contact Edit Failed.");
         }
         else
         {
-            returnWithInfo($userid, $contactid, "edited contact!");
+            returnWithInfo($userid, $contactid, "Edited Contact!");
         }
 		$conn->close();
     }

@@ -13,7 +13,7 @@
    
    	if ($conn->connect_error) 
 	{
-		returnWithError($conn->connect_error);
+		returnWithError("Connection Failed.");
 	} 
 	else
 	{
@@ -35,11 +35,11 @@
 		// Result of insert query.
 		if($result = $conn->query($sql) != TRUE)
 		{
-			returnWithError($conn->error);
+			returnWithError("Failed to Add Contact.");
 		}
 		else
 		{
-			returnWithInfo($userid, $contactid, "added contact!");
+			returnWithInfo($userid, $contactid, "Successfully Added Contact!");
 		}
 	}
 	$conn->close();

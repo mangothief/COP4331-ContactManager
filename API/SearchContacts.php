@@ -15,7 +15,7 @@
       
 	if ($conn->connect_error) 
 	{
-		returnWithError($conn->connect_error);
+		returnWithError("Connection Failed.");
 	} 
 	else
 	{
