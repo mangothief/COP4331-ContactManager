@@ -18,13 +18,13 @@
 	else
 	{
 		// Use first available contactid.
-		$check = "SELECT* FROM contacts WHERE userid=' . $userid . ' AND contactid=$contactid";
-		//echo $check;
+		$check = "SELECT* FROM contacts WHERE userid=$userid AND contactid=$contactid";
 		$result = $conn->query($check);
 		while ($result->num_rows > 0)
 		{
 			$contactid++;
-			$check = "SELECT* FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+			$check = "SELECT* FROM contacts WHERE userid=$userid AND contactid=$contactid";
+			//$check = "SELECT* FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
 			$result = $conn->query($check);
 			//echo $contactid;
 		}	
