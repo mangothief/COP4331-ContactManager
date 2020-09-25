@@ -33,13 +33,11 @@
         // Contacts left to search.
         if ($searchCount > 0)
         {
-            echo "here\n";
             $searchResults .= "[";
             while ($searchCount > 0)
             {
-                echo "here\n";
                 $row = $result->fetch_assoc();
-                $thisJsonObject = '{"contactid":' . $row["contactid"] . '","' . $firstname . '","' . $lastname . '","' . $email . '"}';
+                $thisJsonObject = '{"contactid":' . $row["contactid"] . '","' . $row["firstname"] . '","' . $row["lastname"] . '","' . $row["email"] . '"}';
                 
                 // Push json object onto array for matching contact
                 $searchResults .= $thisJsonObject;
