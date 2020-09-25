@@ -19,7 +19,7 @@
 	{
 		// Use first available contactid.
 		$check = "SELECT* FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
-		echo $check;
+		//echo $check;
 		$result = $conn->query($check);
 		while ($result->num_rows > 0)
 		{
