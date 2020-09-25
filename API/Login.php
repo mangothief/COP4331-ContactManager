@@ -31,8 +31,10 @@
          //$password = $row["password"];
          $userid = $row["userid"];
 
-         //update datelaston
-
+         // update datelaston
+         $update = "UPDATE users SET datelaston='" . $datelaston . "' WHERE userid='" . $userid . "'";
+         $conn->query($update);
+          
          returnWithInfo($userid, "Successful Login!");
       }
       else

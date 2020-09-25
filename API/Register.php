@@ -4,8 +4,8 @@
 
    $username = $inData['username'];
    $password = $inData['password'];
-   //$datecreated = date("Y/m/d");
-   //$datelaston = $datecreated;
+   $datecreated = date("Y/m/d");
+   $datelaston = $datecreated;
 
    //echo $datecreated;
 
@@ -20,8 +20,7 @@
    else
    {
       // query the database with the user information
-      $sql = "INSERT into users(username,password) VALUES ('" . $username . "','" . $password . "')";
-      //echo $sql;
+      $sql = "INSERT into users(username,password,datecreated,datelaston) VALUES ('" . $username . "','" . $password . "','" . $datecreated . "','" . $datelaston . "')";
       
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
