@@ -22,7 +22,7 @@
         $search = $inData["search"];
         // Cross-reference searched name with firstnames and lastnames in contacts.
         $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid;
-        //echo $sql;
+        echo $sql;
         
         $result = $conn->query($sql);
         

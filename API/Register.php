@@ -30,7 +30,7 @@
       }
       else
       {
-         returnWithInfo($userid, "registered user!");
+         returnWithInfo($username, "registered user!");
       }
 		$conn->close();
 	}
@@ -52,9 +52,9 @@
       sendResultInfoAsJson($retValue);
    }
 
-   function returnWithInfo($userid, $info)
+   function returnWithInfo($username, $info)
    {
-      $retValue = '{"userid":' . $userid . ',"info":"' . $info . '"}';
+      $retValue = '{"username":' . $username . ',"info":"' . $info . '"}';
 		sendResultInfoAsJson($retValue);
    }
 ?>

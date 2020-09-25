@@ -26,7 +26,7 @@
 			$contactid++;
 			$check = "SELECT* FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
 			$result = $conn->query($check);
-			echo $contactid;
+			//echo $contactid;
 		}	
 		// Get current date. 
 		$datecreated = date("Y/m/d");
