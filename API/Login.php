@@ -24,7 +24,7 @@
       $firstname = "myfirst";
       $lastname = "mylast";
       $email = "e@aol.com";
-      $search = "j"
+      $search = "j";
 
       $addsql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
       echo "Add\n";
