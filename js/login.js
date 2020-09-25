@@ -27,9 +27,9 @@ function doLogin()
         {
             alert(`Response is \"${xhr.response}\"`);
             var jsonObject = JSON.parse(xhr.response);
-            userID = jsonObject.id;
+            userID = jsonObject.userid;
             alert(`id is \"${userID}\"`);
-            if(userID == 0)
+            if(userID)
             {
                 alert(`Login fail`)
             }
