@@ -28,6 +28,7 @@
         
         // Number of contacts we must search.
         $searchCount = $result->num_rows;
+        echo "\nnum rows:" . $searchCount . "\n";
         //echo $searchCount;
         // Contacts left to search.
         if ($searchcount > 0)
