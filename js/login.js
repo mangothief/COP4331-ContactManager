@@ -31,11 +31,11 @@ function doLogin()
             alert(`id is \"${userID}\"`);
             if(userID)
             {
-                alert(`Login fail`)
+                alert(`Login Success!`);
             }
             else
             {
-                alert(`Login Success!`);
+                alert(`Login fail`);
             }
         }
         else
