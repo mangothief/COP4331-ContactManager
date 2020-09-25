@@ -18,7 +18,7 @@ function doLogin()
     xhr.send(jsonPayload);
 
     xhr.onload = function() {
-        alert(`Loaded: ${xhr.status} ${xhr.response}`);
+        //alert(`Loaded: ${xhr.status} ${xhr.response}`);
         if(xhr.status == 500)
         {
             alert(`500 internal server error`);
