@@ -24,9 +24,11 @@
       $firstname = "myfirst";
       $lastname = "mylast";
       $email = "e@aol.com";
+      $phonenumber = "123-456-7891";
       $search = "j";
+      $username = "thisismyuser";
 
-      $addsql = "SELECT FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
+      $addsql = "SELECT* FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
       echo "Add\n";
       echo $addsql;
       echo "\n";
@@ -41,7 +43,7 @@
       echo $editsql;
       echo "\n";
 
-      $searchsql = "SELECT contactid FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid;
+      $searchsql = "SELECT contactid,firstname,lastname FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid;
       echo "Search\n";
       echo $searchsql;
       echo "\n";
