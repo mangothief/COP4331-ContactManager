@@ -37,7 +37,7 @@
             while ($searchCount > 0)
             {
                 $row = $result->fetch_assoc();
-                $thisJsonObject = '{"contactid":' . $row["contactid"] . ',"' . $row["firstname"] . '","' . $row["lastname"] . '","' . $row["email"] . '"}';
+                $thisJsonObject = '{"contactid":' . $row["contactid"] . '",firstname":"' . $row["firstname"] . '","lastname":"' . $row["lastname"] . '","email":"' . $row["email"] . '"}';
                 
                 // Push json object onto array for matching contact
                 $searchResults .= $thisJsonObject;
