@@ -15,7 +15,10 @@
     {
         // Check if contact exists.
         $sql = "SELECT FROM contacts WHERE userid=$userid AND contactid=$contactid";
-		$result = $conn->query($sql);
+        $result = $conn->query($sql);
+        
+        // Test
+        echo $sql;
 
 		if ($result->num_rows > 0)
         {
