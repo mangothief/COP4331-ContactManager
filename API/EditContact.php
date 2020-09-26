@@ -18,20 +18,18 @@
     else
     {
         $sql = "UPDATE contacts SET firstname='" . $firstname . "', lastname='" . $lastname . "', email='" . $email . "', phonenumber='" . $phonenumber . "' WHERE userid='" . $userid . "' AND contactid='" . $contactid . "'";
-        //echo $sql;
-        
         if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError("Contact Edit Failed.");
         }
         else
         {
-            returnWithInfo($userid, $contactid, "Edited Contact!");
+        	returnWithInfo($userid, $contactid, "Edited Contact!");
         }
-		$conn->close();
+	$conn->close();
     }
     
-    function getRequestInfo()
+	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
 	}
@@ -50,7 +48,7 @@
 
     function returnWithInfo($userid, $contactid, $info)
     {
-        $retValue = '{"userid":' . $userid . ',"contactid":' . $contactid . ',"info":"' . $info . '"}';
+    	$retValue = '{"userid":' . $userid . ',"contactid":' . $contactid . ',"info":"' . $info . '"}';
         sendResultInfoAsJson($retValue);
     }
 ?>
