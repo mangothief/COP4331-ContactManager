@@ -6,6 +6,7 @@
     $lastname = "";
     $email = "";
     $userid = $inData["userid"];
+    $search = $inData["search"];
     $contactid = 0;
 
 	$searchResults = "";
@@ -19,17 +20,11 @@
 	} 
 	else
 	{
-        $search = $inData["search"];
         // Cross-reference searched name with firstnames and lastnames in contacts.
         $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid;
-        //echo $sql;
-        
         $result = $conn->query($sql);
-        
         // Number of contacts we must search.
         $searchCount = $result->num_rows;
-        //echo "\nnum rows:" . $searchCount . "\n";
-
         // Contacts left to search.
         if ($searchCount > 0)
         {

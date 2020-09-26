@@ -1,7 +1,7 @@
 <?php
 	// Add to contacts table.
 	$inData = getRequestInfo();
-	
+
 	$userid = $inData["userid"];
 	$firstname = $inData["firstname"];
 	$lastname = $inData["lastname"];
@@ -10,11 +10,11 @@
 	$contactid = 0;
 
 	$conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
-   
-   	if ($conn->connect_error) 
+
+   	if ($conn->connect_error)
 	{
 		returnWithError("Connection Failed.");
-	} 
+	}
 	else
 	{
 		// Use first available contactid.
@@ -24,11 +24,9 @@
 		{
 			$contactid++;
 			$check = "SELECT* FROM contacts WHERE userid=$userid AND contactid=$contactid";
-			//$check = "SELECT* FROM contacts WHERE userid='" . $userid . "' AND contactid=$contactid";
 			$result = $conn->query($check);
-			//echo $contactid;
-		}	
-		// Get current date. 
+		}
+		// Get current date.
 		$datecreated = date("Y/m/d");
 		// Formatted sql query.
 		$sql = "INSERT into contacts (userid,contactid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" . $contactid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
@@ -43,7 +41,7 @@
 		}
 	}
 	$conn->close();
-	
+
 	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
@@ -54,7 +52,7 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+
 	function returnWithError($err)
 	{
 		$retValue = '{"error":"' . $err . '"}';
@@ -62,7 +60,7 @@
 	}
 
 	function returnWithInfo($userid, $contactid, $info)
-    {
+	{
         $retValue = '{"userid":' . $userid . ',"contactid":' . $contactid . ',"info":"' . $info . '"}';
         sendResultInfoAsJson($retValue);
     }

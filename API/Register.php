@@ -7,11 +7,8 @@
    $datecreated = date("m/d/Y h:i:s a", time());
    $datelaston = $datecreated;
 
-   //echo $datecreated;
-
    // connect to mysql database
    $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
-
    // check for connectivity issues
    if ($conn->connect_error) 
    {
@@ -21,7 +18,6 @@
    {
       // query the database with the user information
       $sql = "INSERT into users(username,password,datecreated,datelaston) VALUES ('" . $username . "','" . $password . "','" . $datecreated . "','" . $datelaston . "')";
-      
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{

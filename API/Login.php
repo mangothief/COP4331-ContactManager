@@ -3,11 +3,8 @@
    $inData = getRequestInfo();
 
    $userid = 0;
-   // username attempt
    $username = "";
-   // password attempt
    $password = "";
-   //$datelaston = date("Y/m/d");
    $datelaston = date("m/d/Y h:i:s a", time());
 
    // connect to mysql database
@@ -21,17 +18,12 @@
    {
       // query the database with the user information
       $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
-      //echo $sql;
-
       $result = $conn->query($sql);
       // check if user and password match records
       if ($result->num_rows > 0)
       {
          $row = $result->fetch_assoc();
-         //$username = $row["username"];
-         //$password = $row["password"];
          $userid = $row["userid"];
-
          // update datelaston
          $update = "UPDATE users SET datelaston='" . $datelaston . "' WHERE userid='" . $userid . "'";
          $conn->query($update);

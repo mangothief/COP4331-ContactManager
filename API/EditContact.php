@@ -18,8 +18,6 @@
     else
     {
         $sql = "UPDATE contacts SET firstname='" . $firstname . "', lastname='" . $lastname . "', email='" . $email . "', phonenumber='" . $phonenumber . "' WHERE userid='" . $userid . "' AND contactid='" . $contactid . "'";
-        //echo $sql;
-        
         if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError("Contact Edit Failed.");
