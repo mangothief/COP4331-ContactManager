@@ -66,51 +66,6 @@ function addContact()
     }
 }
 
-function createTable(jsonData) {
-
-    
-    var col = [];
-    for (var i = 2; i < jsonData.length; i++) {
-        for (var key in jsonData[i]) {
-            if (col.indexOf(key) === -1) {
-                col.push(key);
-            }
-        }
-    }
-    col.push(" ");
-
-    
-    var table = document.createElement("tbody");
-    var tr = table.insertRow(-1);                 
-
-    for (var i = 2; i < col.length; i++) 
-    {
-        var th = document.createElement("th");    
-        th.innerHTML = col[i];
-        tr.appendChild(th);
-    }
-
-   
-    for (var i = 0; i < jsonData.length; i++) 
-    {
-        tr = table.insertRow(-1);
-        for (var j = 2; j < col.length; j++) {
-            var tabCell = tr.insertCell(-1);
-            if(j == col.length - 1)
-            {
-                tabCell.innerHTML = '<button button type="button" class="btn btn-lg btn-success btn-space" data-toggle="modal" data-target="#editForm" id = "' + jsonData[i][col[0]] + '" onclick="editClick(this.id)" ><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Edit</button>';
-            }
-            else
-            {
-                tabCell.innerHTML = jsonData[i][col[j]];
-            }
-        }
-    }
-
-    var divContainer = document.getElementById("cookieTable");
-    divContainer.innerHTML = "";
-    divContainer.appendChild(table);
-}
 
 function searchContacts()
 {
@@ -182,5 +137,65 @@ async function addRow(dataRow) {
       const rowCell = document.createElement("td");
       rowCell.innerText = dataRow[columnKey];
       row.appendChild(rowCell);
+    }
+}
+
+function register()
+{ 
+    var unused = "";
+
+    var login = document.getElementById("userName").value;
+    var password = document.getElementById("password").value;
+    var jsonPayload = '{"username" : "' + username + '", "password" : "' + password + '"}';
+    var url = urlBase + '/Register.php' + urlExtension;
+    
+
+    var request = new XMLHttpRequest();
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        request.send(jsonPayload);
+        jsonObject = JSON.parse(request.responseText);
+        unused = jsonObject.unused;
+
+        if(unused == false)
+        {
+            document.getElementById("userData").innerHtml = "Username unavailable, please try again";
+            return;
+        }
+    }
+    catch(err)
+    {
+        document.getElementById("userData").innerHTML = err.message;
+    }
+    
+}
+
+function deleteContact(id)
+{   
+    var url = urlBase + '/DeleteContact.' + urlExtension;
+    var jsonPayload = '{ID" : "' + id + '"}';
+    var request = new XMLHttpRequest();
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    request.send(jsonPayload);
+
+    try
+    {
+        request.onreadystatechange = function()
+        {
+            if(this.readyState == 4 && this.status == 200)
+            {
+                var jsonObject = JSON.parse(request.responseText);
+                document.getElementById("").innerHTML = " Cookies Eaten!";
+            }
+        }
+
+    }
+    catch(err)
+    {
+        document.getElementById("").innerHTML = err.message;
     }
 }
