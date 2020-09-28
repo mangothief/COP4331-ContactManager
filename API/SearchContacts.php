@@ -7,6 +7,7 @@
     $email = "";
     $userid = $inData["userid"];
     $search = $inData["search"];
+    $orderBy = "contacts" . $inData["orderBy"];
     $contactid = 0;
 
 	$searchResults = "";
@@ -24,7 +25,7 @@
         // Cross-reference searched name with firstnames and lastnames in contacts.
         if (!strcmp($search, ""))
         {
-            "SELECT contactid,firstname,lastname,email FROM contacts where userid=" . $userid . '"ORDER BY"' . $orderBy .  '"ASC LIMIT ' . $rowLimit . "'";
+            "SELECT contactid,firstname,lastname,email FROM contacts where userid=" . $userid . "ORDER BY" . $orderBy . '"ASC LIMIT ' . $rowLimit . "'";
             echo $sql;
         }
         else
