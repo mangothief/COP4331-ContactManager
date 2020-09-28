@@ -1,0 +1,348 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: CookieBook
+  description: API for COP4331 small project.
+
+definitions:
+  Results:
+    type: object
+    properties:
+      contactid: 
+        type: integer
+        example: 1
+      firstname:
+        type: string
+        example: "John"
+      lastname:
+        type: string
+        example: "Doe"
+      email:
+        type: string
+        example: "jd@aol.com"
+
+  Login:
+    type: object 
+    required:
+    - username
+    - password
+    properties:
+      username: 
+        type: string
+        example: myuser
+      password:
+        type: string
+        example: mypass
+        
+  Register:
+    type: object 
+    required:
+    - username
+    - password
+    properties:
+      username: 
+        type: string
+        example: myuser
+      password:
+        type: string
+        example: mypass
+      
+  AddContact:
+    type: object
+    required:
+    - userid
+    - firstname
+    - lastname
+    - phonenumber
+    - email
+    properties:
+      userid:
+        type: integer
+        example: 1
+      firstname: 
+        type: string
+        example: myfirst
+      lastname: 
+        type: string
+        example: mylast
+      phonenumber:
+        type: string
+        example: 123-456-7890
+      email:
+        type: string
+        example: email@aol.com
+
+  SearchContacts:
+    type: object
+    required:
+    - userid
+    - search
+    properties:
+      userid:
+        type: integer
+        example: 1
+      search:
+        type: string
+        example: Rick
+ 
+  EditContact:
+    type: object
+    required:
+    - userid
+    - contactid
+    - firstname
+    - lastname
+    - email
+    - phonenumber
+    properties:
+      userid:
+        type: integer
+        example: 1
+      contactid:
+        type: integer
+        example: 12
+      firstname:
+        type: string
+        example: John
+      lastname:
+        type: string
+        example: Doe
+      email:
+        type: string
+        example: jd@aol.com
+      phonenumber:
+        type: string
+        example: 123-654-9876
+        
+  DeleteContact:
+    type: object
+    required:
+    - userid
+    - contactid
+    properties:
+      userid:
+        type: integer
+        example: 1
+      contactid:
+        type: integer
+        example: 12
+  
+  DeleteUser:
+    type: object
+    required: 
+    - userid
+    - username
+    - password
+    properties:
+      userid:
+        type: integer
+        example: 1
+      username:
+        type: string
+        example: myuser
+      password:
+        type: string
+        example: mypass
+        
+  ToggleContacts:
+    type: object
+    required:
+    - results
+    properties:
+      results:
+        type: array
+        items: 
+          $ref: '#/definitions/Results' 
+                 
+  
+paths:
+  /Login.php:
+    post:
+      tags:
+        - users
+      summary: Logs in as a user for contact manager.
+      operationId: doLogin
+      description: User login.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: loginItem
+          description: Login
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  
+  /Register.php:
+    post:
+      tags:
+        - users
+      summary: Signs up a user.
+      operationId: doRegister
+      description: User registers an account.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: registerItem
+          description: Register a user.
+          schema:
+            $ref: '#/definitions/Register'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  
+  
+  /AddContact.php: 
+    post:
+      tags:
+        - contacts
+      summary: Adds a contact to table.
+      operationId: addContact
+      description: Adds a user to contacts.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: contactItem
+          description: Add the contact.
+          schema:
+            $ref: '#/definitions/AddContact'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+
+  /SearchContacts.php: 
+    post:
+      tags:
+        - contacts
+      summary: Searches for contacts with first or last name or email matching search criterion, for a given user.
+      operationId: searchContact
+      description: Searches for a contact(s).
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: searchItem
+          description: Search for a contact.
+          schema:
+            $ref: '#/definitions/SearchContacts'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+          
+  /DeleteContact.php: 
+    post:
+      tags:
+        - contacts
+      summary: Contact deletion.
+      operationId: deleteContact
+      description: Deletes a contact.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: deleteItem
+          description: Delete by userid and contactid.
+          schema:
+            $ref: '#/definitions/DeleteContact'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+          
+  /EditContact.php: 
+    post:
+      tags:
+        - contacts
+      summary: Update contact information.
+      operationId: editContact
+      description: Update contact name, email, and phonenumber.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: editItem
+          description: Edit information associated with a certain userid and contactid.
+          schema:
+            $ref: '#/definitions/EditContact'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+          
+  /DeleteUser.php:
+    post:
+      tags:
+        - users
+      summary: Delete a user.
+      operationId: deleteUser
+      description: Allows user to delete account.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: deleteItem
+          description: Delete user information.
+          schema:
+            $ref: '#/definitions/DeleteUser'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+          
+  /ToggleContacts.php:
+    post:
+      tags:
+        - contacts
+      summary: Sort contacts by name or by date created.
+      operationId: toggleContacts
+      description: Allows user to to view their contacts in lastname, firstname lexical order, or by datecreated. 
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: toggleItems
+          description: Sort the contacts array.
+          schema:
+            $ref: '#/definitions/ToggleContacts'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+          
+host: 206.189.193.36
+basePath: /API
+schemes:
+  - http
+  - https
