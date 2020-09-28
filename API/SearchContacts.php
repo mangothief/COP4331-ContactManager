@@ -34,13 +34,11 @@
         // Cross-reference searched name with firstnames and lastnames in contacts.
         if (!strcmp($search, ""))
         {
-            "SELECT contactid,firstname,lastname,email FROM contacts where userid=" . $userid . "ORDER BY" . $orderBy . '"ASC LIMIT ' . $rowLimit . "'";
-            echo $sql;
+            "SELECT contactid,firstname,lastname,email FROM contacts where userid=" . $userid . ' ORDER BY ' . $orderBy . ' ASC LIMIT ' . $rowLimit;
         }
         else
         {
             $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $orderBy .  ' ASC LIMIT ' . $rowLimit;  
-            echo $sql;
         }
 
         $result = $conn->query($sql);
