@@ -7,12 +7,21 @@
     $email = "";
     $userid = $inData["userid"];
     $search = $inData["search"];
-    $orderBy = "contacts" . $inData["orderBy"];
+    $orderBy = $inData["orderBy"];
     $contactid = 0;
 
 	$searchResults = "";
     $searchCount = 0;
     $rowLimit = 10;
+
+    if (!strcmp($orderBy, "name"))
+    {
+        $orderBy = "contacts.lastname, contacts.firstname";
+    }
+    else if (!strcmp($orderBy, "date"))
+    {
+        $orderBy = "contacts.datecreated";
+    }
 
     $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
       
@@ -30,7 +39,7 @@
         }
         else
         {
-            $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid . '"ORDER BY"' . $orderBy .  '"ASC LIMIT ' . $rowLimit . "'";  
+            $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid . 'ORDER BY' . $orderBy .  'ASC LIMIT' . $rowLimit;  
             echo $sql;
         }
 
