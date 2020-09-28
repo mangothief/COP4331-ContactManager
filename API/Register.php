@@ -7,6 +7,8 @@
    $datecreated = date("m/d/Y h:i:s a", time());
    $datelaston = $datecreated;
 
+   // hash password
+   $password = password_hash($password, PASSWORD_DEFAULT);
    // connect to mysql database
    $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
    // check for connectivity issues

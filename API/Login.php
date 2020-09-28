@@ -3,8 +3,8 @@
    $inData = getRequestInfo();
 
    $userid = 0;
-   $username = "";
-   $password = "";
+   $username = $inData["username"];
+   $password = $inData["password"];
    $datelaston = date("m/d/Y h:i:s a", time());
 
    // connect to mysql database
@@ -12,23 +12,31 @@
    // check for connectivity issues
    if ($conn->connect_error) 
    {
-      returnWithError("Login Failed.");
+      returnWithError("Connection Failed.");
    }
    else
    {
       // query the database with the user information
-      $sql = "SELECT userid,username,password FROM users where username='" . $inData["username"] . "' AND password='" . $inData["password"] . "'";
+      $sql = "SELECT userid,hash FROM users where username='" . $username . "'";
       $result = $conn->query($sql);
       // check if user and password match records
       if ($result->num_rows > 0)
       {
          $row = $result->fetch_assoc();
          $userid = $row["userid"];
-         // update datelaston
-         $update = "UPDATE users SET datelaston='" . $datelaston . "' WHERE userid='" . $userid . "'";
-         $conn->query($update);
-          
-         returnWithInfo($userid, "Successful Login!");
+         $hash = $row["password"];
+
+         if (password_verify($password, $hash))
+         {
+            // update datelaston
+            $update = "UPDATE users SET datelaston='" . $datelaston . "' WHERE userid='" . $userid . "'";
+            $conn->query($update);
+            returnWithInfo($userid, "Successful Login!");
+         }
+         else
+         {
+            returnWithError("Incorrect Password.");
+         }
       }
       else
       {
