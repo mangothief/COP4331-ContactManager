@@ -17,7 +17,7 @@
    else
    {
       // query the database with the user information
-      $sql = "SELECT userid,hash FROM users where username='" . $username . "'";
+      $sql = "SELECT userid,password FROM users where username='" . $username . "'";
       $result = $conn->query($sql);
       // check if user and password match records
       if ($result->num_rows > 0)
