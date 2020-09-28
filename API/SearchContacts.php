@@ -11,6 +11,7 @@
 
 	$searchResults = "";
     $searchCount = 0;
+    $rowLimit = 10;
 
     $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
       
@@ -21,7 +22,17 @@
 	else
 	{
         // Cross-reference searched name with firstnames and lastnames in contacts.
-        $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid;
+        if (!strcmp($search, ""))
+        {
+            "SELECT contactid,firstname,lastname,email FROM contacts where userid=" . $userid . '"ORDER BY"' . $orderBy .  '"ASC LIMIT ' . $rowLimit . "'";
+            echo $sql;
+        }
+        else
+        {
+            $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid . '"ORDER BY"' . $orderBy .  '"ASC LIMIT ' . $rowLimit . "'";  
+            echo $sql;
+        }
+
         $result = $conn->query($sql);
         // Number of contacts we must search.
         $searchCount = $result->num_rows;

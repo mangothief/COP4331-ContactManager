@@ -40,7 +40,7 @@
       }
       else
       {
-         returnWithError("No Matching Records Found");
+         returnWithError("No Matching Records Found.");
       }
       $conn->close();
    }

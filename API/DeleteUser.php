@@ -1,5 +1,5 @@
 <?php
-    // Delete a user.
+    // Delete a user, and all associated contacts.
     $inData = getRequestInfo();
 
     // must be logged in as correct userid.
@@ -20,18 +20,27 @@
         $sql = "SELECT* FROM users WHERE username=$username AND password=$password AND userid=$userid";
         $result = $conn->query($sql);
         echo $sql;
-        
+
 		if ($result->num_rows > 0)
         {
-            $sql = "DELETE FROM users WHERE userid='" . $userid . "'";
-            echo $sql;
+            // Delete contacts. 
+            $sql = "DELETE FROM contacts WHERE userid='" . $userid . "'";
             if ($result = $conn->query($sql) != TRUE)
             {
-                returnWithError("Deletion Failed.");
+                returnWithError("Failed to Delete Contacts.");
             }
             else
             {
-                returnWithInfo($userid, $contactid, "Successfully Deleted User.");
+                $sql = "DELETE FROM users WHERE userid='" . $userid . "'";
+                //echo $sql;
+                if ($result = $conn->query($sql) != TRUE)
+                {
+                    returnWithError("Deletion Failed.");
+                }
+                else
+                {
+                    returnWithInfo($userid, $contactid, "Successfully Deleted User.");
+                }
             }
         }
         else
