@@ -14,6 +14,7 @@ function doLogin()
 
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.send(jsonPayload);
 
     xhr.onload = function() {
         //alert(`Loaded: ${xhr.status} ${xhr.response}`);
@@ -23,17 +24,17 @@ function doLogin()
         } 
         else if(xhr.status == 200)
         {
-            alert(`Response is \"${xhr.response}\"`);
+            //alert(`Response is \"${xhr.response}\"`);
             var jsonObject = JSON.parse(xhr.response);
             userID = jsonObject.userid;
-            alert(`id is \"${userID}\"`);
+            //alert(`id is \"${userID}\"`);
             if(userID)
             {
                 document.getElementById("loginResult").innerHTML = `Login Success!`;
             }
             else
             {
-                document.getElementById("loginResult").innerHTML = `Login fail`;
+                document.getElementById("loginResult").innerHTML = `${jsonObject.error}`;
             }
         }
         else
@@ -56,8 +57,6 @@ function doLogin()
     */
 
     //alert("Finished xhr");
-
-    xhr.send(jsonPayload);
 };
 
 function swap()
