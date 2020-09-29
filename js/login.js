@@ -93,7 +93,7 @@ function doRegister()
             if(typeof jsonObject.error == 'undefined')
             {
                 showLogin();
-                document.getElementById("loginResult").innerHTML = `${jsonObject.error}`;
+                document.getElementById("loginResult").innerHTML = `${jsonObject.info}`;
             }
             else
             {
