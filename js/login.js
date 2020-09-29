@@ -1,7 +1,6 @@
 var userID = 0;
 var firstName = "";
 var lastName = "";
-var url = "http://www.cookiebook.team/API/Login.php";
 
 function doLogin()
 {
@@ -12,7 +11,7 @@ function doLogin()
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open("POST", url, true);
+    xhr.open("POST", "http://www.cookiebook.team/API/Login.php", true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send(jsonPayload);
 
@@ -75,7 +74,7 @@ function doRegister()
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open("POST", url, true);
+    xhr.open("POST", "http://www.cookiebook.team/API/Register.php", true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send(jsonPayload);
 
