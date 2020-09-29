@@ -21,7 +21,7 @@ function doLogin()
         //alert(`Loaded: ${xhr.status} ${xhr.response}`);
         if(xhr.status == 500)
         {
-            alert(`500 internal server error`);
+            document.getElementById("loginResult").innerHTML = `500 internal server error`;
         } 
         else if(xhr.status == 200)
         {
@@ -31,20 +31,20 @@ function doLogin()
             alert(`id is \"${userID}\"`);
             if(userID)
             {
-                alert(`Login Success!`);
+                document.getElementById("loginResult").innerHTML = `Login Success!`;
             }
             else
             {
-                alert(`Login fail`);
+                document.getElementById("loginResult").innerHTML = `Login fail`;
             }
         }
         else
         {
-            alert(`Unspecified error: error code ${xhr.status}`);
+            document.getElementById("loginResult").innerHTML = `Unspecified error: error code ${xhr.status}`;
         }
     };
     xhr.onerror = function() { // only triggers if the request couldn't be made at all
-        alert(`Network Error`);
+        document.getElementById("loginResult").innerHTML = `Network Error`;
     };
 
     //Only needed for network testing
@@ -57,5 +57,11 @@ function doLogin()
     };
     */
 
-    alert("Finished xhr");
-}
+    //alert("Finished xhr");
+};
+
+function swap()
+{
+    var element = document.getElementById("titleName");
+    element.innerHTML = "WOW"
+};

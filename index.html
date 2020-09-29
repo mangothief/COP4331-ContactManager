@@ -15,7 +15,7 @@
           <div class="row justify-content-center vertical-center">
             <div class="col-md-auto">
               <form class="form-container">
-                Login
+                <p id="titleName">Login</p>
                   <div class="form-group">
                     <label for="inputEmailLabel">Username</label>
                     <input type="text" class="form-control" id="inputUsername">
@@ -28,13 +28,14 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-sm">
-                        Create Account
+                        <button type="submit" onclick="swap()" class="btn btn-primary btn-block submit-btn">Create Account</button>
                       </div>
                       <div class="col-sm">
                         <button type="submit" onclick="doLogin()" class="btn btn-primary btn-block submit-btn">Submit</button>
                       </div>
                     </div>
                   </div>
+                  <span id="loginResult"></span>
               </form>
             </div>
           </div>
