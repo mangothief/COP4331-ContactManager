@@ -16,15 +16,15 @@
     $rowLimit = 10;
 
     // Search by a given field in table.
-    if (!strcmp($order, "name"))
+    if (!strcmp($order, "fullname") || !strcmp($order, "name"))
     {
         $order = "contacts.lastname, contacts.firstname";
     }
-    else if (!strcmp($orderBy, "datecreated"))
+    else if (!strcmp($order, "datecreated") || !strcmp($order, "date"))
     {
         $order = "contacts.datecreated";
     }
-    else if (!strcmp($orderBy, "favoritecookie"))
+    else if (!strcmp($order, "favoritecookie") || !strcmp($order, "cookie"))
     {
         $order = "contacts.favoritecookie";
     }
@@ -37,18 +37,22 @@
 	} 
 	else
 	{
-        // Cross-reference searched name with firstnames and lastnames in contacts.
+        // Show all results if search is empty.
         if (!strcmp($search, ""))
         {
             $sql = "SELECT* FROM contacts where userid=" . $userid . ' ORDER BY ' . $order . ' ASC LIMIT ' . $rowLimit;
         }
-        else if (!strcmp($field, "name"))
+        else if (!strcmp($field, "name")) // search by name
         {
             $sql = "SELECT* FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $order .  ' ASC LIMIT ' . $rowLimit;  
         }
-        else if (!strcmp($field, "cookie"))
+        else if (!strcmp($field, "favoritecookie")) // search by cookie
         {
             $sql = "SELECT* FROM contacts where favoritecookie LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $order .  ' ASC LIMIT ' . $rowLimit;
+        }
+        else // search by date
+        {
+            $sql = "SELECT* FROM contacts where datecreated LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $order .  ' ASC LIMIT ' . $rowLimit;
         }
 
         $result = $conn->query($sql);
