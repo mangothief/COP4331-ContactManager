@@ -57,7 +57,7 @@ function doLogin()
     };
     */
 
-    //alert("Finished xhr");
+    alert("Finished xhr");
 };
 
 function swap()
