@@ -86,7 +86,7 @@ function showRegister()
       <div class="container">
         <div class="row">
           <div class="col-sm">
-            <button type="button" onclick="showRegister()" class="btn btn-primary btn-block submit-btn">Create Account</button>
+            <button type="button" onclick="showLogin()" class="btn btn-primary btn-block submit-btn">Create Account</button>
           </div>
           <div class="col-sm">
             <button type="button" onclick="doLogin()" class="btn btn-primary btn-block submit-btn">Submit</button>
@@ -115,7 +115,7 @@ function showLogin()
       <div class="form-group">
         <label for="inputPasswordLabel">Password</label>
         <input type="password" class="form-control" id="inputPassword">
-        <small id="newAccount" class="form-text text-muted">New user? Register</small>
+        <a onclick="showRegister()"><small id="newAccount" class="form-text text-muted">New user? Register</small></a>
       </div>
       <div class="container">
         <div class="row">
