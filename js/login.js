@@ -59,8 +59,70 @@ function doLogin()
     //alert("Finished xhr");
 };
 
-function swap()
+function showRegister()
 {
+    /*
     var element = document.getElementById("titleName");
     element.innerHTML = "WOW"
+    */
+    document.getElementById("mainForm").innerHTML =
+    `
+    <form class="form-container" id="mainForm">
+    <p id="titleName">Register</p>
+      <div class="form-group">
+        <label for="inputEmailLabel">Username</label>
+        <input type="text" class="form-control" id="inputUsername">
+      </div>
+      <div class="form-group">
+        <label for="inputPasswordLabel">Password</label>
+        <input type="password" class="form-control" id="inputPassword">
+        <small id="newAccount" class="form-text text-muted">New user?</small>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <button type="button" onclick="showLogin()" class="btn btn-primary btn-block submit-btn">Create Account</button>
+          </div>
+          <div class="col-sm">
+            <button type="button" onclick="doLogin()" class="btn btn-primary btn-block submit-btn">Submit</button>
+          </div>
+        </div>
+      </div>
+      <span id="loginResult"></span>
+  </form>
+    `
+};
+
+function showLogin()
+{
+    /*
+    var element = document.getElementById("titleName");
+    element.innerHTML = "WOW"
+    */
+    document.getElementById("mainForm").innerHTML =
+    `
+    <form class="form-container" id="mainForm">
+    <p id="titleName">Login</p>
+      <div class="form-group">
+        <label for="inputEmailLabel">Username</label>
+        <input type="text" class="form-control" id="inputUsername">
+      </div>
+      <div class="form-group">
+        <label for="inputPasswordLabel">Password</label>
+        <input type="password" class="form-control" id="inputPassword">
+        <small id="newAccount" class="form-text text-muted">New user?</small>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <button type="button" onclick="showRegister()" class="btn btn-primary btn-block submit-btn">Create Account</button>
+          </div>
+          <div class="col-sm">
+            <button type="button" onclick="doLogin()" class="btn btn-primary btn-block submit-btn">Submit</button>
+          </div>
+        </div>
+      </div>
+      <span id="loginResult"></span>
+  </form>
+    `
 };
