@@ -15,8 +15,6 @@ function doLogin()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    xhr.send(jsonPayload);
-
     xhr.onload = function() {
         //alert(`Loaded: ${xhr.status} ${xhr.response}`);
         if(xhr.status == 500)
@@ -57,7 +55,9 @@ function doLogin()
     };
     */
 
-    alert("Finished xhr");
+    //alert("Finished xhr");
+
+    xhr.send(jsonPayload);
 };
 
 function swap()
