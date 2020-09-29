@@ -1,5 +1,5 @@
 <?php
-    // Search by all contact attributes. 
+    // Search by contact attributes. 
 	$inData = getRequestInfo();
     
     $firstname = "";
@@ -7,20 +7,26 @@
     $email = "";
     $userid = $inData["userid"];
     $search = $inData["search"];
-    $orderBy = $inData["orderBy"];
+    $field = $inData["field"];
+    $order = $inData["order"];
     $contactid = 0;
 
 	$searchResults = "";
     $searchCount = 0;
     $rowLimit = 10;
 
-    if (!strcmp($orderBy, "name"))
+    // Search by a given field in table.
+    if (!strcmp($order, "name"))
     {
-        $orderBy = "contacts.lastname, contacts.firstname";
+        $order = "contacts.lastname, contacts.firstname";
     }
-    else if (!strcmp($orderBy, "date"))
+    else if (!strcmp($orderBy, "datecreated"))
     {
-        $orderBy = "contacts.datecreated";
+        $order = "contacts.datecreated";
+    }
+    else if (!strcmp($orderBy, "favoritecookie"))
+    {
+        $order = "contacts.favoritecookie";
     }
 
     $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
@@ -34,11 +40,18 @@
         // Cross-reference searched name with firstnames and lastnames in contacts.
         if (!strcmp($search, ""))
         {
-            "SELECT contactid,firstname,lastname,email FROM contacts where userid=" . $userid . ' ORDER BY ' . $orderBy . ' ASC LIMIT ' . $rowLimit;
+            $sql = "SELECT contactid,firstname,lastname,email,phonenumber,favoritecookie,datecreated FROM contacts where userid=" . $userid . ' ORDER BY ' . $order . ' ASC LIMIT ' . $rowLimit;
         }
-        else
+        else if (!strcmp($field, "name"))
         {
-            $sql = "SELECT contactid,firstname,lastname,email FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' OR email LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $orderBy .  ' ASC LIMIT ' . $rowLimit;  
+            $sql = "SELECT* FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $order .  ' ASC LIMIT ' . $rowLimit;  
+            //$sql = "SELECT contactid,firstname,lastname,email,phonenumber,favoritecookie,datecreated FROM contacts where firstname LIKE '%" . $search . "%' OR lastname LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $orderBy .  ' ASC LIMIT ' . $rowLimit;  
+        }
+        else if (!strcmp($field, "cookie"))
+        {
+            $sql = "SELECT* FROM contacts where favoritecookie LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $order .  ' ASC LIMIT ' . $rowLimit;
+            //$sql = "SELECT contactid,firstname,lastname,email,phonenumber,favoritecookie,datecreated FROM contacts where favoritecookie LIKE '%" . $search . "%' AND userid=" . $userid . ' ORDER BY ' . $orderBy .  ' ASC LIMIT ' . $rowLimit;
+
         }
 
         $result = $conn->query($sql);
@@ -51,7 +64,7 @@
             while ($searchCount > 0)
             {
                 $row = $result->fetch_assoc();
-                $thisJsonObject = '{"contactid":' . $row["contactid"] . ',"firstname":"' . $row["firstname"] . '","lastname":"' . $row["lastname"] . '","email":"' . $row["email"] . '"}';
+                $thisJsonObject = '{"contactid":' . $row["contactid"] . ',"firstname":"' . $row["firstname"] . '","lastname":"' . $row["lastname"] . '","email":"' . $row["email"] . '","phonenumber":"' . $row["phonenumber"] . '","favoritecookie":"' . $row["favoritecookie"] . '","datecreated":"' . $inData["datecreated"] . '"}';
                 
                 // Push json object onto array for matching contact
                 $searchResults .= $thisJsonObject;
