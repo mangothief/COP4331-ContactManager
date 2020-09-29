@@ -5,22 +5,6 @@ info:
   description: API for COP4331 small project.
 
 definitions:
-  Results:
-    type: object
-    properties:
-      contactid: 
-        type: integer
-        example: 1
-      firstname:
-        type: string
-        example: "John"
-      lastname:
-        type: string
-        example: "Doe"
-      email:
-        type: string
-        example: "jd@aol.com"
-
   Login:
     type: object 
     required:
@@ -55,6 +39,7 @@ definitions:
     - lastname
     - phonenumber
     - email
+    - favoritecookie
     properties:
       userid:
         type: integer
@@ -71,12 +56,17 @@ definitions:
       email:
         type: string
         example: email@aol.com
+      favoritecookie:
+        type: string
+        example: sugar
 
   SearchContacts:
     type: object
     required:
     - userid
     - search
+    - field
+    - order
     properties:
       userid:
         type: integer
@@ -84,6 +74,12 @@ definitions:
       search:
         type: string
         example: Rick
+      field:
+        type: string
+        example: name
+      order:
+        type: string
+        example: name
  
   EditContact:
     type: object
@@ -94,6 +90,7 @@ definitions:
     - lastname
     - email
     - phonenumber
+    - favoritecookie
     properties:
       userid:
         type: integer
@@ -113,6 +110,9 @@ definitions:
       phonenumber:
         type: string
         example: 123-654-9876
+      favoritecookie:
+        type: string
+        example: sugar
         
   DeleteContact:
     type: object
@@ -143,17 +143,6 @@ definitions:
       password:
         type: string
         example: mypass
-        
-  ToggleContacts:
-    type: object
-    required:
-    - results
-    properties:
-      results:
-        type: array
-        items: 
-          $ref: '#/definitions/Results' 
-                 
   
 paths:
   /Login.php:
@@ -312,29 +301,6 @@ paths:
           description: Delete user information.
           schema:
             $ref: '#/definitions/DeleteUser'
-      responses:
-        200:
-          description: OK
-        404:
-          description: URL Not Found
-          
-  /ToggleContacts.php:
-    post:
-      tags:
-        - contacts
-      summary: Sort contacts by name or by date created.
-      operationId: toggleContacts
-      description: Allows user to to view their contacts in lastname, firstname lexical order, or by datecreated. 
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: toggleItems
-          description: Sort the contacts array.
-          schema:
-            $ref: '#/definitions/ToggleContacts'
       responses:
         200:
           description: OK
