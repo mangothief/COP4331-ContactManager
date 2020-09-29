@@ -7,6 +7,7 @@
 	$lastname = $inData["lastname"];
 	$phonenumber = $inData["phonenumber"];
 	$email = $inData["email"];
+	$favoritecookie = $inData["favoritecookie"];
 	$contactid = 0;
 
 	$conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
@@ -29,7 +30,7 @@
 		// Get current date.
 		$datecreated = date("Y/m/d");
 		// Formatted sql query.
-		$sql = "INSERT into contacts (userid,contactid,firstname,lastname,phonenumber,email,datecreated) VALUES ('" . $userid . "','" . $contactid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $datecreated . "')";
+		$sql = "INSERT into contacts (userid,contactid,firstname,lastname,phonenumber,email,favoritecookie,datecreated) VALUES ('" . $userid . "','" . $contactid . "','" .  $firstname . "','" . $lastname . "','" . $phonenumber . "','" . $email . "','" . $favoritecookie . "','" . $datecreated . "')";
 		// Result of insert query.
 		if($result = $conn->query($sql) != TRUE)
 		{

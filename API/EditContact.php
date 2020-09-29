@@ -8,6 +8,7 @@
     $lastname = $inData["lastname"];
     $email = $inData["email"];
     $phonenumber = $inData["phonenumber"];
+    $favoritecookie = $inData["favoritecookie"];
 
     $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
 
@@ -17,7 +18,7 @@
     }
     else
     {
-        $sql = "UPDATE contacts SET firstname='" . $firstname . "', lastname='" . $lastname . "', email='" . $email . "', phonenumber='" . $phonenumber . "' WHERE userid='" . $userid . "' AND contactid='" . $contactid . "'";
+        $sql = "UPDATE contacts SET firstname='" . $firstname . "', lastname='" . $lastname . "', email='" . $email . "', phonenumber='" . $phonenumber . "', favoritecookie='" . $favoritecookie . "' WHERE userid='" . $userid . "' AND contactid='" . $contactid . "'";
         if($result = $conn->query($sql) != TRUE)
 		{
 			returnWithError("Contact Edit Failed.");
