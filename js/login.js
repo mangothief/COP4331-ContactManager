@@ -81,7 +81,7 @@ function showRegister()
       <div class="form-group">
         <label for="inputConfirmPasswordLabel">Confirm Password</label>
         <input type="password" class="form-control" id="inputConfirmPassword">
-        <small id="newAccount" class="form-text text-muted">Already Have An Account? Login</small>
+        <a onclick="showLogin()"><small id="newAccount" class="form-text text-muted">Already Have An Account? Login</small></a>
       </div>
       <div class="container">
         <div class="row">
@@ -100,10 +100,6 @@ function showRegister()
 
 function showLogin()
 {
-    /*
-    var element = document.getElementById("titleName");
-    element.innerHTML = "WOW"
-    */
     document.getElementById("mainForm").innerHTML =
     `
     <form class="form-container" id="mainForm">
