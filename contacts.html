@@ -14,6 +14,7 @@
                 <div class="foreground" id="loginDiv">
                     <button type="button"  class="buttons" onclick="openWindow()">Create New Contact</button>
                     <button type="button" id="logout" class="buttons" onclick="logout();">Logout</button>
+                    <button type="button" class="buttons" onclick="">Delete Account</button>
                 </div> 
             </form>
 
@@ -29,34 +30,61 @@
                    
                     <label for = "phone"><b>Phone:</b></label>
                     <input type="text"  id="phone" placeholder="'xxx-xxx-xxxx'" maxlength="20">
-                   
+   
                     <label for = "email"><b>Email:</b></label>
                     <input type="text"  id="email" placeholder="'cookies@more.please'" maxlength="50">
+
+                    <label for = "phone"><b>Favorite Cookie:</b></label>
+                    <input type="text"  id="cookie" placeholder="'Chocolate Chip'" maxlength="50">
 
                     <button type="button" class="buttons" onclick="addRow();closeWindow()">Add Cookie</button>
                     <button type="button" class="buttons" onclick="closeWindow()">Back</button>
                 </form>
             </div>
+
+            <div class ="contactWindow" id="updateWindow">
+                <form class="form-container">
+                    <h1>Update Cookies</h1>
+
+                    <label for = "first"><b>First Name:</b></label>
+                    <input type="text"  id="first" placeholder="'JohnCookie'" maxlength="50" >
+                    
+                    <label for = "last"><b>Last Name:</b></label>
+                    <input type="text"  id="last" placeholder="'CookieSmith'" maxlength="50">
+                   
+                    <label for = "phone"><b>Phone:</b></label>
+                    <input type="text"  id="phone" placeholder="'xxx-xxx-xxxx'" maxlength="20">
+   
+                    <label for = "email"><b>Email:</b></label>
+                    <input type="text"  id="email" placeholder="'cookies@more.please'" maxlength="50">
+
+                    <label for = "phone"><b>Favorite Cookie:</b></label>
+                    <input type="text"  id="cookie" placeholder="'Chocolate Chip'" maxlength="50">
+
+                    <button type="button" class="buttons" onclick="updateContact();closeWindow1()">Update</button>
+                    <button type="button" class="buttons" onclick="closeWindow1()">Back</button>
+                </form>
+            </div>
             
-            <input type="text" name="search" id="search" onekeyup="searchContacts()" placeholder="Search in here" size="20px">
+            <input type="text" name="search" id="search" onekeyup="searchContacts()" placeholder="Search in here" size="71px">
 
         <div class = "tableContainer">
             <table id="cookieTable">
                 <tr class = "header">
-                    <th style="width:20%;">First Name</th>
-                    <th style="width:20%;">Last Name</th>
-                    <th style="widows:13%;">Phone Number</th>
-                    <th style="width:13%;">Email</th>
+                    <th style="width:15%;">First Name</th>
+                    <th style="width:15%;">Last Name</th>
+                    <th style="width:15%;">Email</th>
+                    <th style="widows:20%;">Phone Number</th>
+                    <th style="width:20%;">Favorite Cookie</th>
+                    <th style="width:6%">Edit</th>
+                    <th style="width:5%">Delete</th>
                 </tr>
-                <tbody id="tableTbody">
-
-                </tbody>
-                <!--<tr>
+               <!-- <tr>
                     <td>UCF</td>
                     <td>Knightro</td>
                     <td>ucf@knights.com</td>
                     <td>123-456-7890</td>
-                    
+                    <td>Oatmeal</td>
                 </tr>
 
                 <tr>
@@ -79,6 +107,45 @@
                 </tr> -->
             </table>
         </div>
-    </div>    
+    </div>   
+    <script>
+        function addRow()
+        {
+            const myTable = document.getElementById("cookieTable");
+
+            const row = myTable.insertRow(1);
+            row.style.textAlign = "center";
+
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            const cell3 = row.insertCell(2);
+            const cell4 = row.insertCell(3);
+            const cell5 = row.insertCell(4);
+            const cell6 = row.insertCell(5);
+            const cell7 = row.insertCell(6);
+
+            const firstName = document.getElementById("first").value;
+            const lastName = document.getElementById("last").value;
+            const phoneNumber = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const cookie = document.getElementById("cookie").value;
+            console.log(firstName);
+
+            cell1.innerHTML = firstName;
+            cell2.innerHTML = lastName;
+            cell3.innerHTML = phoneNumber;
+            cell4.innerHTML = email;
+            cell5.innerHTML = cookie;
+            cell6.innerHTML = '<button type="edit"; class="btn btnEdit" onclick="openWindow1();updateInfo()">Edit</button>';
+            cell7.innerHTML = '<button type="delete"; class="btn btnDelete" onclick="deleteRow();deleteContact()">Delete</button>';
+        }
+
+        function deleteRow()
+        {   
+            if(confirm("Are you sure you would like to delete?"))
+                document.getElementById("cookieTable").deleteRow(1); 
+             
+        }
+    </script> 
 </body>
 </html>
