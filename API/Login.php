@@ -3,7 +3,7 @@
    $inData = getRequestInfo();
 
    $userid = 0;
-   $username = $inData["username"];
+   $email = $inData["email"];
    $password = $inData["password"];
    $datelaston = date("m/d/Y h:i:s a", time());
 
@@ -17,9 +17,9 @@
    else
    {
       // query the database with the user information
-      $sql = "SELECT userid,password FROM users where username='" . $username . "'";
+      $sql = "SELECT userid,password FROM users where email='" . $email . "'";
       $result = $conn->query($sql);
-      // check if user and password match records
+      // check if email and password match records
       if ($result->num_rows > 0)
       {
          $row = $result->fetch_assoc();

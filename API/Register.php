@@ -2,7 +2,7 @@
    // Register a user.
    $inData = getRequestInfo();
 
-   $username = $inData['username'];
+   $email = $inData['email'];
    $password = $inData['password'];
    $datecreated = date("m/d/Y h:i:s a", time());
    $datelaston = $datecreated;
@@ -19,7 +19,7 @@
    else
    {
       // query the database with the user information
-      $sql = "INSERT into users(username,password,datecreated,datelaston) VALUES ('" . $username . "','" . $password . "','" . $datecreated . "','" . $datelaston . "')";
+      $sql = "INSERT into users(email,password,datecreated,datelaston) VALUES ('" . $email . "','" . $password . "','" . $datecreated . "','" . $datelaston . "')";
       // check if records are inserted
       if($result = $conn->query($sql) != TRUE)
 		{

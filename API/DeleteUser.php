@@ -4,8 +4,8 @@
 
     // must be logged in as correct userid.
     $userid = $inData["userid"];
-    // provide correct username and password.
-    $username = $inData["username"];
+    // provide correct email and password.
+    $email = $inData["email"];
     $password = $inData["password"];
 
     $conn = new mysqli('localhost', 'root', '8C@UnIoOwUK2k7gZl%N9Mi', 'cookiebook');
@@ -16,8 +16,8 @@
     }
     else
     {
-        // Check if username and password match.
-        $sql = "SELECT* FROM users WHERE username=$username AND password=$password AND userid=$userid";
+        // Check if email and password match.
+        $sql = "SELECT* FROM users WHERE email=$email AND password=$password AND userid=$userid";
         $result = $conn->query($sql);
         echo $sql;
 
@@ -39,7 +39,7 @@
                 }
                 else
                 {
-                    returnWithInfo($userid, $contactid, "Successfully Deleted User.");
+                    returnWithInfo($userid, "Successfully Deleted User.");
                 }
             }
         }
