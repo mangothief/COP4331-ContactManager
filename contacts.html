@@ -9,11 +9,12 @@
 
 <body>
     <div id="header">
-        <h1 id="title">Friends Has Cookies?</h1>
+        <h1 id="title">Cookie Contacts</h1>
             <form action="">
                 <div class="foreground" id="loginDiv">
                     <button type="button"  class="buttons" onclick="openWindow()">Create New Contact</button>
                     <button type="button" id="logout" class="buttons" onclick="logout();">Logout</button>
+                    <button type="button" class="buttons" onclick="">Delete Account</button>
                 </div> 
             </form>
 
@@ -21,42 +22,69 @@
                 <form class="form-container">
                     <h1>Add Cookies</h1>
 
-                    <label for = "first"><b>First Name:</b></label>
+                    <label for = "first"><strong>First Name:</strong></label>
                     <input type="text"  id="first" placeholder="'JohnCookie'" maxlength="50" >
                     
-                    <label for = "last"><b>Last Name:</b></label>
+                    <label for = "last"><strong>Last Name:</strong></label>
                     <input type="text"  id="last" placeholder="'CookieSmith'" maxlength="50">
                    
-                    <label for = "phone"><b>Phone:</b></label>
+                    <label for = "phone"><strong>Phone:</strong></label>
                     <input type="text"  id="phone" placeholder="'xxx-xxx-xxxx'" maxlength="20">
-                   
-                    <label for = "email"><b>Email:</b></label>
+   
+                    <label for = "email"><strong>Email:</strong></label>
                     <input type="text"  id="email" placeholder="'cookies@more.please'" maxlength="50">
 
-                    <button type="button" class="buttons" onclick="addRow();closeWindow()">Add Cookie</button>
+                    <label for = "phone"><strong>Favorite Cookie:</strong></label>
+                    <input type="text"  id="cookie" placeholder="'Chocolate Chip'" maxlength="50">
+
+                    <button type="button" class="buttons" onclick="addRow(); reset(); closeWindow(); addContact();">Add Cookie</button>
                     <button type="button" class="buttons" onclick="closeWindow()">Back</button>
                 </form>
             </div>
+
+            <div class ="contactWindow" id="updateWindow">
+                <form class="form-container">
+                    <h1>Update Cookies</h1>
+
+                    <label for = "first"><strong>First Name:</strong></label>
+                    <input type="text"  id="first" placeholder="'JohnCookie'" maxlength="50" >
+                    
+                    <label for = "last"><strong>Last Name:</strong></label>
+                    <input type="text"  id="last" placeholder="'CookieSmith'" maxlength="50">
+                   
+                    <label for = "phone"><strong>Phone:</strong></label>
+                    <input type="text"  id="phone" placeholder="'xxx-xxx-xxxx'" maxlength="20">
+   
+                    <label for = "email"><strong>Email:</strong></label>
+                    <input type="text"  id="email" placeholder="'cookies@more.please'" maxlength="50">
+
+                    <label for = "phone"><strong>Favorite Cookie:</strong></label>
+                    <input type="text"  id="cookie" placeholder="'Chocolate Chip'" maxlength="50">
+
+                    <button type="button" class="buttons" onclick="updateContact();closeWindow1()">Update</button>
+                    <button type="button" class="buttons" onclick="closeWindow1()">Back</button>
+                </form>
+            </div>
             
-            <input type="text" name="search" id="search" onekeyup="searchContacts()" placeholder="Search in here" size="20px">
+            <input type="text" name="search" id="search" onekeyup="searchContacts()" placeholder="Search in here" size="71px">
 
         <div class = "tableContainer">
             <table id="cookieTable">
                 <tr class = "header">
-                    <th style="width:20%;">First Name</th>
-                    <th style="width:20%;">Last Name</th>
-                    <th style="widows:13%;">Phone Number</th>
-                    <th style="width:13%;">Email</th>
+                    <th style="width:15%;">First Name</th>
+                    <th style="width:15%;">Last Name</th>
+                    <th style="width:15%;">Email</th>
+                    <th style="widows:20%;">Phone Number</th>
+                    <th style="width:20%;">Favorite Cookie</th>
+                    <th style="width:6%">Edit</th>
+                    <th style="width:5%">Delete</th>
                 </tr>
-                <tbody id="tableTbody">
-
-                </tbody>
-                <!--<tr>
+               <!-- <tr>
                     <td>UCF</td>
                     <td>Knightro</td>
                     <td>ucf@knights.com</td>
                     <td>123-456-7890</td>
-                    
+                    <td>Oatmeal</td>
                 </tr>
 
                 <tr>
@@ -79,6 +107,17 @@
                 </tr> -->
             </table>
         </div>
-    </div>    
+    </div>   
+    <script>
+  
+        function deleteRow(btnDelete)
+        {   
+            var row = btnDelete.parentNode.parentNode;
+            if(confirm("Are you sure you would like to delete?"))
+             row.parentNode.removeChild(row);
+        }
+
+      
+    </script> 
 </body>
 </html>
